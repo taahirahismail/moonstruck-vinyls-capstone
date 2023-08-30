@@ -26,8 +26,7 @@ app.use(
     }),
     cookieParser(),
     cors(),
-    routes,
-    errorHandling
+    routes
 );
 
 // direct to home page with routes descriptions
