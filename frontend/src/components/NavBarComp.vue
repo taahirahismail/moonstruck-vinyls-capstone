@@ -1,7 +1,7 @@
 <template>
     <nav class="navbar navbar-expand-lg navbar-dark purple-bg">
     <div class="container-fluid">
-      <a class="navbar-brand px-5" href="https://www.youtube.com/watch?v=dQw4w9WgXcQ">
+      <a class="navbar-brand px-3" href="https://www.youtube.com/watch?v=dQw4w9WgXcQ">
         <img
           src="https://i.postimg.cc/DzVqdyxt/moonstruck-vinyls-logo.png"
           alt="puzzles-logo"
@@ -77,7 +77,7 @@ export default {
     }
 
     .nav-link:hover {
-        color: #010111;
+        color: #ffe342;
     }
     
     .router-link-active {
@@ -85,7 +85,7 @@ export default {
     }
 
     .logo {
-        width: 30%;
+        width: 25%;
         border-radius: 50%;
     }
 </style>

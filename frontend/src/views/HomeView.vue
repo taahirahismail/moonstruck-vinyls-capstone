@@ -14,7 +14,7 @@
       </div>
   
       <div>
-        <img src="https://i.postimg.cc/1tsw27hB/dark-cloud.png" alt="cloud" class="small-cloud-1">
+        <img src="https://i.postimg.cc/1tsw27hB/dark-cloud.png" alt="cloud" class="">
         <img src="https://i.postimg.cc/1tsw27hB/dark-cloud.png" alt="cloud" class="small-cloud-2">
       </div>
     </div>
