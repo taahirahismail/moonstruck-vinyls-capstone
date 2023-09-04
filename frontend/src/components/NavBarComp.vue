@@ -1,5 +1,5 @@
 <template>
-    <nav class="navbar navbar-expand-lg navbar-dark purple-bg">
+    <nav class="navbar navbar-expand-lg navbar-dark sticky-top purple-bg">
     <div class="container-fluid">
       <a class="navbar-brand px-3" href="https://www.youtube.com/watch?v=dQw4w9WgXcQ">
         <img
@@ -72,7 +72,7 @@ export default {
     }
     
     .nav-link {
-        font-size: 25px;
+        font-size: 20px;
         color: #F4F4F4;
     }
 
@@ -85,7 +85,7 @@ export default {
     }
 
     .logo {
-        width: 25%;
+        width: 15%;
         border-radius: 50%;
     }
 </style>

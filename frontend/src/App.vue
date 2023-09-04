@@ -22,6 +22,10 @@ export default {
   padding: 0;
   box-sizing: border-box;
   background: #010111;
+  /* background-image: url('../public/stars.png');
+  background-size: 50px;
+  background-position: 50% 20%;
+  background-attachment: fixed; */
   color: #F4F4F4;
 }
 </style>
