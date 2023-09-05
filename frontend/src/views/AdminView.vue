@@ -38,7 +38,7 @@
                             </td>
                             <td>{{ product.albumDesc }}</td>
                             <td>
-                                <!-- <update-product-comp/> -->
+                                <update-product-comp/>
 
                                 <button class="btn del-btn" @click="deleteProduct(product.prodID)">Delete</button>
                             </td>
