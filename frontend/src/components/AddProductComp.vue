@@ -14,7 +14,7 @@
     <div class="modal" id="add-prod-modal">
       <div class="modal-dialog">
         <div class="modal-content">
-          <div class="modal-header">
+          <div class="modal-header purple-bg">
             <h1 class="text-center heading-text">New Product:</h1>
             <button
               type="button"
@@ -74,11 +74,11 @@
               <div class="mb-3">
                 <label for="genre" class="form-label"> Genre: * </label>
                 <input
-                  v-model="model.product.prodID"
+                  v-model="model.product.genre"
                   type="text"
                   id="genre"
                   class="form-control input-bg"
-                  placeholder="eg: pop"
+                  placeholder="eg: Pop"
                   required
                   oninvalid="this.setCustomValidity('Please enter genre.')"
                   oninput="this.setCustomValidity('')"
@@ -141,7 +141,7 @@
             </form>
           </div>
 
-          <div class="modal-footer">
+          <div class="modal-footer purple-bg">
             <button
               type="submit"
               class="m-2 btn add-prod-btn"
@@ -160,41 +160,54 @@
 
 <script>
 export default {
-    data() {
-        return {
-            model: {
-                product: {
-                    prodID: "",
-                    albumName: "",
-                    albumArtist: "",
-                    genre: "",
-                    price: "",
-                    quantity: "",
-                    prodImg: "",
-                    albumDesc: ""
-                }
-            }
-        }
-    },
+  data() {
+    return {
+      model: {
+        product: {
+          prodID: "",
+          albumName: "",
+          albumArtist: "",
+          genre: "",
+          price: "",
+          quantity: "",
+          prodImg: "",
+          albumDesc: "",
+        },
+      },
+    };
+  },
 
-    methods: {
-        addProduct() {
-            this.$store.dispatch("addProduct", this.model.product);
-            this.$router.push("/admin");
-            setTimeout(() => {
-                console.log("Reload");
-                location.reload()
-            }, 5000);
-        }
-    }
+  methods: {
+    addProduct() {
+      this.$store.dispatch("addProduct", this.model.product);
+      this.$router.push("/admin");
+      setTimeout(() => {
+        console.log("Reload");
+        location.reload();
+      }, 5000);
+    },
+  },
 };
 </script>
 
-<style>
-.button>a {
-  background: #0A192F;
-  color: #FFD700;
-  border: 3px solid #FFD700;
+<style scoped>
+.purple-bg {
+  background: #2D1128;
+}
+
+.heading-text {
+  color: #ffd700;
+  font-family: "Montserrat Alternates", sans-serif;
+}
+
+/* .btn-close {
+  color: #ffd700;
+} */
+
+.button > a {
+  background: #010111;
+  color: #ffd700;
+  border: 3px solid #010111;
   border-radius: 10px;
   box-shadow: 0 0 0 0 transparent;
   -webkit-transition: all 0.2s ease-in;
@@ -202,12 +215,26 @@ export default {
   transition: all 0.2s ease-in;
 }
 
-.button>a:hover {
-    background: #010111;
-  color: #FFD700;
-  box-shadow: 0 0 30px 5px #FFD700;
+.button > a:hover {
+  background: #010111;
+  color: #ffd700;
+  box-shadow: 0 0 15px 2.5px #ffd700;
   -webkit-transition: all 0.2s ease-out;
   -moz-transition: all 0.2s ease-out;
   transition: all 0.2s ease-out;
+}
+
+.add-prod-btn, .clr-btn {
+  background: #2D1128;
+  color: #ffd700;
+  border: 3px solid #2D1128;
+}
+
+.add-prod-btn:hover, .clr-btn:hover {
+  border: 3px solid #ffd700;
+}
+
+.modal-content {
+  border: 2px solid #ffd700;
 }
 </style>
