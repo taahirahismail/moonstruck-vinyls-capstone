@@ -40,7 +40,7 @@ routes.get("/products", (req, res) => {
 });
 
 routes.get("/product/:id", (req, res) => {
-  products.fetchProducts(req, res);
+  products.fetchProduct(req, res);
 });
 
 routes.post("/product", bodyParser.json(), (req, res) => {
