@@ -138,19 +138,20 @@
               </div>
 
               <p>* indicates a required field</p>
-            </form>
-          </div>
 
-          <div class="modal-footer purple-bg">
-            <button
-              type="submit"
-              class="m-2 btn add-prod-btn"
-              data-bs-dismiss="modal"
-              @click="addProduct()"
-            >
-              Add Product
-            </button>
-            <button type="reset" class="m-2 btn clr-btn">Clear Fields</button>
+              
+              <div class="modal-footer purple-bg">
+                <button
+                  type="submit"
+                  class="m-2 btn add-prod-btn"
+                  data-bs-dismiss="modal"
+                  @click="addProduct()"
+                >
+                  Add Product
+                </button>
+                <button type="reset" class="m-2 btn clr-btn">Clear Fields</button>
+              </div>
+            </form>
           </div>
         </div>
       </div>

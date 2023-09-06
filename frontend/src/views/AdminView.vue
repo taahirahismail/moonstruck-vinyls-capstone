@@ -3,7 +3,7 @@
     <h1 class="text-center p-3 heading-text">Admin !</h1>
 
     <div class="prod-table">
-      <div class="d-flex justify-content-between">
+      <div class="mx-auto d-flex justify-content-between" style="width: 90%;">
         <h3 class="text-center p-3">Products</h3>
         <add-product-comp />
       </div>
@@ -41,7 +41,7 @@
               </td>
               <td>{{ product.albumDesc }}</td>
               <td>
-                <update-product-comp />
+                <!-- <update-product-comp /> -->
 
                 <button
                   class="btn del-btn"
@@ -61,10 +61,10 @@
     </div>
 
     <div class="user-table">
-      <div class="d-flex justify-content-between">
+      <div class="mx-auto d-flex justify-content-between" style="width: 90%;">
         <h3 class="text-center p-3">Users</h3>
 
-        <!-- insert add user comp here -->
+        <add-user-comp/>
       </div>
 
       <div class="d-flex justify-content-center">
@@ -76,7 +76,6 @@
               <th>Last Name</th>
               <th>User Role</th>
               <th>Email</th>
-              <th>Password</th>
               <th>Profile Image</th>
               <th>Action</th>
             </tr>
@@ -89,7 +88,6 @@
               <td>{{ user.lastName }}</td>
               <td>{{ user.userRole }}</td>
               <td>{{ user.emailAdd }}</td>
-              <td>{{ user.userPass }}</td>
               <td class="user-img">
                 <img
                   :src="user.userImg"
@@ -116,7 +114,7 @@
     </div>
 
     <div class="order-table">
-      <div class="d-flex justify-content-between">
+      <div class="mx-auto d-flex justify-content-between" style="width: 90%;">
         <h3 class="text-center p-3">Orders</h3>
       </div>
 
@@ -139,7 +137,7 @@
               <td>{{ cart.prodID }}</td>
               <td>{{ cart.quantity }}</td>
               <td>
-                <update-product-comp />
+                <!-- <update-product-comp /> -->
 
                 <button class="btn del-btn" @click="deleteOrder(cart.orderID)">
                   Delete
@@ -161,12 +159,14 @@
 import SpinnerComp from "../components/SpinnerComp.vue";
 import AddProductComp from "@/components/AddProductComp.vue";
 import UpdateProductComp from "@/components/UpdateProductComp.vue";
+import AddUserComp from "@/components/AddUserComp.vue";
 
 export default {
   components: {
     SpinnerComp,
     AddProductComp,
     UpdateProductComp,
+    AddUserComp,
   },
 
   computed: {
@@ -176,10 +176,23 @@ export default {
     product() {
       return this.$store.state.product;
     },
+    users() {
+      return this.$store.state.users;
+    },
+    user() {
+      return this.$store.state.user;
+    },
+    // orders() {
+    //   return this.$store.state.orders;
+    // },
+    // cart() {
+    //   return this.store.state.cart;
+    // }
   },
 
   mounted() {
     this.$store.dispatch("fetchProducts");
+    this.$store.dispatch("fetchUsers");
   },
 
   methods: {
@@ -212,6 +225,10 @@ td {
   border: 3px solid #f4f4f4;
   color: #f4f4f4;
   padding: 5px;
+}
+
+table {
+  width: 90%;
 }
 
 .del-btn {
