@@ -44,6 +44,7 @@
                 <!-- <update-product-comp /> -->
 
                 <button
+                  type="submit"
                   class="btn del-btn"
                   @click="deleteProduct(product.prodID)"
                 >
@@ -137,7 +138,7 @@
               <td>{{ cart.prodID }}</td>
               <td>{{ cart.quantity }}</td>
               <td>
-                <!-- <update-product-comp /> -->
+                <!-- insert update orders comp -->
 
                 <button class="btn del-btn" @click="deleteOrder(cart.orderID)">
                   Delete
@@ -204,6 +205,15 @@ export default {
         }, 500);
       }
     },
+
+    deleteUser(userID) {
+      if (confirm("Are you sure you want to delete this user?")) {
+        this.$store.dispatch("deleteUser", userID);
+        setTimeout(() => {
+          location.reload();
+        }, 500);
+      }
+    }
   },
 };
 </script>
@@ -242,5 +252,9 @@ table {
   background: #ffd700;
   color: #2d1128;
   border: 1px solid #2d1128;
+}
+
+.user-img {
+  max-width: 75px;
 }
 </style>

@@ -5,16 +5,16 @@
       class="btn edit-prod-btn"
       @click="openEditModal(product.prodID)"
       data-bs-toggle="modal"
-      :data-bs-target="'#edit-prod-modal' + product.prodID"
+      :data-bs-target="'#edit-prod-modal' + `${product.prodID}`"
     >
       Edit
     </button>
 
     <div
       class="modal"
-      :id="'edit-prod-modal' + product.prodID"
+      :id="'edit-prod-modal' + `${product.prodID}`"
       tab-index="-1"
-      :aria-labelledby="'edit-prod-label' + product.prodID"
+      :aria-labelledby="'edit-prod-label' + `${product.prodID}`"
       aria-hidden="true"
     >
       <div class="modal-content">

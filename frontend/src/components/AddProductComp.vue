@@ -24,11 +24,11 @@
           </div>
 
           <div>
-            <form class="p-3 purple-bg">
+            <form @submit.prevent="addProduct" class="p-3 purple-bg">
               <div class="mb-3">
                 <label for="prodID" class="form-label"> Product ID: * </label>
                 <input
-                  v-model="model.product.prodID"
+                  v-model="product.prodID"
                   type="text"
                   id="prodID"
                   class="form-control input-bg"
@@ -44,7 +44,7 @@
                   Album Name: *
                 </label>
                 <input
-                  v-model="model.product.albumName"
+                  v-model="product.albumName"
                   type="text"
                   id="albumName"
                   class="form-control input-bg"
@@ -60,7 +60,7 @@
                   Album Artist: *
                 </label>
                 <input
-                  v-model="model.product.albumArtist"
+                  v-model="product.albumArtist"
                   type="text"
                   id="albumArtist"
                   class="form-control input-bg"
@@ -74,7 +74,7 @@
               <div class="mb-3">
                 <label for="genre" class="form-label"> Genre: * </label>
                 <input
-                  v-model="model.product.genre"
+                  v-model="product.genre"
                   type="text"
                   id="genre"
                   class="form-control input-bg"
@@ -88,7 +88,7 @@
               <div class="mb-3">
                 <label for="price" class="form-label"> Price: * </label>
                 <input
-                  v-model="model.product.price"
+                  v-model="product.price"
                   type="number"
                   id="price"
                   class="form-control input-bg"
@@ -102,7 +102,7 @@
               <div class="mb-3">
                 <label for="quantity" class="form-label"> Quantity: * </label>
                 <input
-                  v-model="model.product.quantity"
+                  v-model="product.quantity"
                   type="number"
                   id="quantity"
                   class="form-control input-bg"
@@ -116,7 +116,7 @@
               <div class="mb-3">
                 <label for="prodImg" class="form-label"> Product Image: </label>
                 <input
-                  v-model="model.product.prodImg"
+                  v-model="product.prodImg"
                   type="text"
                   id="prodImg"
                   class="form-control input-bg"
@@ -129,7 +129,7 @@
                   Album Description:
                 </label>
                 <input
-                  v-model="model.product.albumDesc"
+                  v-model="product.albumDesc"
                   type="text"
                   id="albumDesc"
                   class="form-control input-bg"
@@ -145,7 +145,6 @@
                   type="submit"
                   class="m-2 btn add-prod-btn"
                   data-bs-dismiss="modal"
-                  @click="addProduct()"
                 >
                   Add Product
                 </button>
@@ -161,9 +160,10 @@
 
 <script>
 export default {
+  props: ['product'],
+
   data() {
     return {
-      model: {
         product: {
           prodID: "",
           albumName: "",
@@ -174,13 +174,12 @@ export default {
           prodImg: "",
           albumDesc: "",
         },
-      },
     };
   },
 
   methods: {
     addProduct() {
-      this.$store.dispatch("addProduct", this.model.product);
+      this.$store.dispatch("addProduct", this.product);
       this.$router.push("/admin");
       setTimeout(() => {
         console.log("Reload");

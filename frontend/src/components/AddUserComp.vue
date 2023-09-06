@@ -1,5 +1,5 @@
 <template>
-    <div>
+  <div>
     <div class="button">
       <a
         data-bs-toggle="modal"
@@ -14,7 +14,7 @@
     <div class="modal" id="add-user-modal">
       <div class="modal-dialog">
         <div class="modal-content">
-          <div class="modal-header purple-bg">
+          <div class="modal-header blue-bg">
             <h1 class="text-center heading-text">Register User:</h1>
             <button
               type="button"
@@ -24,13 +24,13 @@
           </div>
 
           <div>
-            <form class="p-3 blue-bg">
+            <form @submit.prevent="registerUser" class="p-3 blue-bg">
               <div class="mb-3">
                 <label for="firstName" class="form-label">
                   First Name: *
                 </label>
                 <input
-                  v-model="model.user.firstName"
+                  v-model="user.firstName"
                   type="text"
                   id="firstName"
                   class="form-control input-bg"
@@ -42,11 +42,9 @@
               </div>
 
               <div class="mb-3">
-                <label for="lastName" class="form-label">
-                  Last Name: *
-                </label>
+                <label for="lastName" class="form-label"> Last Name: * </label>
                 <input
-                  v-model="model.user.lastName"
+                  v-model="user.lastName"
                   type="text"
                   id="lastName"
                   class="form-control input-bg"
@@ -58,11 +56,9 @@
               </div>
 
               <div class="mb-3">
-                <label for="userRole" class="form-label">
-                  User Role: *
-                </label>
+                <label for="userRole" class="form-label"> User Role: * </label>
                 <input
-                  v-model="model.user.userRole"
+                  v-model="user.userRole"
                   type="text"
                   id="userRole"
                   class="form-control input-bg"
@@ -76,7 +72,7 @@
               <div class="mb-3">
                 <label for="emailAdd" class="form-label"> Email: * </label>
                 <input
-                  v-model="model.user.emailAdd"
+                  v-model="user.emailAdd"
                   type="text"
                   id="emailAdd"
                   class="form-control input-bg"
@@ -90,7 +86,7 @@
               <div class="mb-3">
                 <label for="userPass" class="form-label"> Password: * </label>
                 <input
-                  v-model="model.user.password"
+                  v-model="user.userPass"
                   type="text"
                   id="password"
                   class="form-control input-bg"
@@ -103,7 +99,7 @@
               <div class="mb-3">
                 <label for="userImg" class="form-label"> User Profile: </label>
                 <input
-                  v-model="model.user.userImg"
+                  v-model="user.userImg"
                   type="text"
                   id="userImg"
                   class="form-control input-bg"
@@ -113,17 +109,17 @@
 
               <p>* indicates a required field</p>
 
-              
-              <div class="modal-footer purple-bg">
+              <div class="modal-footer blue-bg">
                 <button
                   type="submit"
-                  class="m-2 btn add-prod-btn"
+                  class="m-2 btn add-user-btn"
                   data-bs-dismiss="modal"
-                  @click="register()"
                 >
                   Register
                 </button>
-                <button type="reset" class="m-2 btn clr-btn">Clear Fields</button>
+                <button type="reset" class="m-2 btn clr-btn">
+                  Clear Fields
+                </button>
               </div>
             </form>
           </div>
@@ -135,35 +131,75 @@
 
 <script>
 export default {
-    data() {
-        return {
-            addUserID: null,
+  props: ['user'],
 
-            model: {
-                user: {
-                    firstName: "",
-                    lastName: "",
-                    userRole: "",
-                    emailAdd: "",
-                    userPass: "",
-                    userImg: ""
-                }
-            }
-        }
+  data() {
+    return {
+      user: {
+        firstName: "",
+        lastName: "",
+        userRole: "",
+        emailAdd: "",
+        userPass: "",
+        userImg: "",
+      },
+    };
+  },
+
+  methods: {
+      registerUser() {
+      this.$store.dispatch("registerUser", this.user);
+      this.$router.push('/admin');
+      setTimeout(() => {
+        location.reload();
+      }, 5000);
     },
-
-    methods: {
-        register() {
-            this.$store.dispatch("register", this.model.user);
-            console.log(this.model.user);
-            setTimeout(() => {
-                location.reload();
-            }, 50000);
-        }
-    }
-}
+  },
+};
 </script>
 
-<style>
-    
+<style scoped>
+.blue-bg {
+  background: #0a192f;
+}
+
+.heading-text {
+  color: #ffd700;
+  font-family: "Montserrat Alternates", sans-serif;
+}
+.button > a {
+  background: #010111;
+  color: #ffd700;
+  border: 3px solid #010111;
+  border-radius: 10px;
+  box-shadow: 0 0 0 0 transparent;
+  -webkit-transition: all 0.2s ease-in;
+  -moz-transition: all 0.2s ease-in;
+  transition: all 0.2s ease-in;
+}
+
+.button > a:hover {
+  background: #010111;
+  color: #ffd700;
+  box-shadow: 0 0 15px 2.5px #ffd700;
+  -webkit-transition: all 0.2s ease-out;
+  -moz-transition: all 0.2s ease-out;
+  transition: all 0.2s ease-out;
+}
+
+.add-user-btn,
+.clr-btn {
+  background: #0a192f;
+  color: #ffd700;
+  border: 3px solid #0a192f;
+}
+
+.add-user-btn:hover,
+.clr-btn:hover {
+  border: 3px solid #ffd700;
+}
+
+.modal-content {
+  border: 2px solid #ffd700;
+}
 </style>

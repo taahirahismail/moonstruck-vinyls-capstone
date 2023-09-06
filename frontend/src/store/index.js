@@ -1,5 +1,7 @@
 import { createStore } from 'vuex';
 import axios from 'axios';
+import {useCookies} from 'vue3-cookies';
+const {cookies} = useCookies();
 const url = "https://moonstruck-vinyls.onrender.com";
 
 export default createStore({
@@ -7,7 +9,7 @@ export default createStore({
     users: null,
     user: null,
     userAuth: null,
-    userLoggedIn: null,
+    userLoggedIn: false,
     token: null,
     products: null,
     product: null,
@@ -26,6 +28,7 @@ export default createStore({
 
     setUser(state, user) {
       state.user = user;
+      state.userAuth = true;
     },
 
     setUserLoggedIn(state, userLoggedIn) {
@@ -94,7 +97,6 @@ export default createStore({
     async fetchProducts(context) {
       try {
         const {data} = await axios.get(`${url}/products`);
-        console.log( data.results )
         context.commit("setProducts", data.results);
       } catch (e) {
         context.commit("setMessage", "An error occurred while fetching products.");
@@ -102,9 +104,7 @@ export default createStore({
     },
 
     async fetchProduct(context, payload) {
-      console.log(payload)
-
-      try {
+        try {
         const {data} = await axios.get(`${url}/product/${payload.prodID}`, payload.data);
         context.commit("setProduct", data.results);
       } catch (e) {
@@ -113,8 +113,6 @@ export default createStore({
     },
 
     async addProduct(context, payload) {
-      console.log("REACHED");
-
       try {
         const {res} = await axios.post(`${url}/product`, payload);
         const {message, err} = await res.data;
@@ -133,13 +131,9 @@ export default createStore({
     },
 
     async updateProduct(context, payload) {
-      console.log(payload);
-
       try {
         const res = await axios.patch(`${url}/product/${payload.prodID}`, payload);
         const {message, err} = await res.data;
-
-        console.log(message, err);
 
         if (err) {
           console.log("An error has occurred: ", err);
@@ -149,7 +143,7 @@ export default createStore({
         if (message) {
           context.dispatch("fetchProducts");
           context.commit("setProduct", message);
-          context.commit("setMessage", "Product successfully product.");
+          context.commit("setMessage", "Product successfully updated!");
         }
       } catch (e) {
         context.commit("setMessage", e);
@@ -157,8 +151,6 @@ export default createStore({
     },
 
     async deleteProduct(context, prodID) {
-      console.log("REACHED");
-
       try {
         const {res} = await axios.delete(`${url}/product/${prodID}`);
         const {message, err} = await res.data;
@@ -191,13 +183,13 @@ export default createStore({
     async fetchUser(context, payload) {
       try {
         const {data} = await axios.get(`${url}/user/${payload.userID}`, payload.data);
-        context.commit("setUser", data.results);
+        context.commit("setUser", data.result);
       } catch (e) {
         context.commit("setMessage", "An error occurred while fetching a single user.");
       }
     },
 
-    async register(context, payload) {
+    async registerUser(context, payload) {
       try {
         const res = await axios.post(`${url}/register`, payload);
         const {message, err} = await res.data;
@@ -213,6 +205,10 @@ export default createStore({
         context.commit("setMessage", "An error occurred.")
       }
     },
+
+  async userLogin(context, payload) {
+    // insert function here 
+  },
 
     async updateUser(context, payload) {
       try {
@@ -246,6 +242,9 @@ export default createStore({
       } catch (e) {
         context.commit("setMessage", "An error occurred while deleting user.")
       }
-    }
+    },
+
+    // orders / cart functions here
+
   }
 });
