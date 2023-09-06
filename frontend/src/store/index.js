@@ -44,6 +44,10 @@ export default createStore({
       state.product = product;
     },
 
+    setSelectedProduct(state, product) {
+      state.selectedProduct = product;
+    },
+
     setOrders(state, orders) {
       state.orders = orders;
     },

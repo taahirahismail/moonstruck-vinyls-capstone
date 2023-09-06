@@ -1,6 +1,6 @@
 <template>
   <nav-bar-comp/>
-  <router-view/>
+  <router-view class="fit"/>
   <footer-comp/>
 </template>
 
@@ -27,5 +27,9 @@ export default {
   background-position: 50% 20%;
   background-attachment: fixed; */
   color: #F4F4F4;
+}
+
+.fit {
+  min-height: 75vh;
 }
 </style>
