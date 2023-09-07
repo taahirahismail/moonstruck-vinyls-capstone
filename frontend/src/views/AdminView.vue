@@ -2,7 +2,7 @@
   <div>
     <h1 class="text-center p-3 heading-text">Admin !</h1>
 
-    <div class="prod-table">
+    <div class="my-3 prod-table">
       <div class="mx-auto d-flex justify-content-between" style="width: 90%;">
         <h3 class="text-center p-3">Products</h3>
         <add-product-comp />
@@ -61,7 +61,7 @@
       </div>
     </div>
 
-    <div class="user-table">
+    <div class="my-3 user-table">
       <div class="mx-auto d-flex justify-content-between" style="width: 90%;">
         <h3 class="text-center p-3">Users</h3>
 
@@ -114,7 +114,7 @@
       </div>
     </div>
 
-    <div class="order-table">
+    <div class="my-3 order-table">
       <div class="mx-auto d-flex justify-content-between" style="width: 90%;">
         <h3 class="text-center p-3">Orders</h3>
       </div>
@@ -140,7 +140,7 @@
               <td>
                 <!-- insert update orders comp -->
 
-                <button class="btn del-btn" @click="deleteOrder(cart.orderID)">
+                <button class="btn del-btn" @click="clearCart(cart.userID)">
                   Delete
                 </button>
               </td>
@@ -187,17 +187,18 @@ export default {
     user() {
       return this.$store.state.user;
     },
-    // orders() {
-    //   return this.$store.state.orders;
-    // },
-    // cart() {
-    //   return this.store.state.cart;
-    // }
+    orders() {
+      return this.$store.state.orders;
+    },
+    cart() {
+      return this.store.state.cart;
+    }
   },
 
   mounted() {
     this.$store.dispatch("fetchProducts");
     this.$store.dispatch("fetchUsers");
+    this.$store.dispatch("fetchOrders");
   },
 
   methods: {
@@ -213,6 +214,24 @@ export default {
     deleteUser(userID) {
       if (confirm("Are you sure you want to delete this user?")) {
         this.$store.dispatch("deleteUser", userID);
+        setTimeout(() => {
+          location.reload();
+        }, 500);
+      }
+    },
+
+    clearCart(userID) {
+      if (confirm("Are you sure you want to clear the orders of this user?")) {
+        this.$store.dispatch("clearCart", userID);
+        setTimeout(() => {
+          location.reload();
+        }, 500);
+      }
+    },
+
+    removeFromCart(prodID) {
+      if (confirm("Are you sure you want to remove this item from the cart?")) {
+        this.$store.dispatch("removeFromCart", prodID);
         setTimeout(() => {
           location.reload();
         }, 500);

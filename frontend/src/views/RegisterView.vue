@@ -106,9 +106,6 @@ export default {
     registerUser() {
       this.$store.dispatch("registerUser", this.user);
       this.$router.push("/");
-      setTimeout(() => {
-        location.reload();
-      }, 5000);
     },
   },
 };

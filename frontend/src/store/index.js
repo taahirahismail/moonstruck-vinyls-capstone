@@ -6,7 +6,7 @@ const url = "https://moonstruck-vinyls.onrender.com";
 
 export default createStore({
   state: {
-    users: null,
+    users: null || JSON.parse(localStorage.getItem('user')),
     user: null,
     userAuth: null,
     userLoggedIn: false,
@@ -27,8 +27,9 @@ export default createStore({
     },
 
     setUser(state, user) {
-      state.user = user;
-      state.userAuth = true;
+      state.user = user,
+      state.userAuth = true,
+      localStorage.setItem('user', JSON.stringify(user));
     },
 
     setUserLoggedIn(state, userLoggedIn) {
@@ -207,21 +208,26 @@ export default createStore({
     },
 
   async userLogin(context, payload) {
-    // try {
-    //   const res = await axios.post(`${url}/login`, payload);
+    try {
+      const res = await axios.post(`${url}/login`, payload);
+      const {result, token, message, err} = await res.data
 
-    //   const {result, token, message, err} = await res.data
+      if (result) {
+        context.commit('setUser', result);
+        context.commit('setToken', token);
+        localStorage.setItem('loginToken', token);
+        localStorage.setItem('user', JSON.stringify(result));
+        context.commit('setMessage', message);
 
-    //   if (result) {
-    //     context.commit('setUser', result);
-    //     context.commit('setToken', token);
-    //     context.commit('setMessage', message);
-
-    //     setTimeout(() => {
-    //       router.push()
-    //     })
-    //   }
-    // }
+        setTimeout(() => {
+          router.push('/')
+        }), 3000
+      } else {
+        context.commit('setMessage', err);
+      }
+    } catch (e) {
+      console.error(e);
+    }
   },
 
     async updateUser(context, payload) {
@@ -259,6 +265,73 @@ export default createStore({
     },
 
     // orders / cart functions here
+    async fetchOrders(context) {
+      try {
+        const {data} = await axios.get(`${url}/orders`);
+        context.commit("setOrders", data.results);
+      } catch (e) {
+        context.commit("setMessage", "An error occurred while fetching orders.");
+      }
+    },
 
+    async fetchCart(context, userID) {
+      try {
+        const {res} = await axios.get(`${url}/user/${userID}/carts`);
+        context.commit('setCart', res.data)
+      } catch (e) {
+        context.commit("setMessage", "An error occurred while fetching cart.")
+      }
+    },
+
+    async addToCart(context, {payload}) {
+
+    },
+
+    async updateCart(context, userID, orderID) {
+      try {
+        const res = await axios.put(`${url}/user/${userID}/cart/${orderID}`);
+        const {results, err} = await res.data
+
+        if (results) {
+          context.commit('setCart', results)
+        } else {
+          context.commit('setMessage', err)
+        }
+      } catch (e) {
+        context.commit("setMessage", "An error occurred while updating cart.")
+      }
+    },
+
+    async clearCart(context, userID) {
+      try {
+        const res = await axios.delete(`${url}/user/${userID}/cart`);
+        const {message, err} = res.data;
+
+        if (err) {
+          context.commit("setMessage", err)
+        }
+
+        if (message) {
+          context.commit("setCart", message)
+          console.log("Cart cleared successfully!")
+        }
+      } catch (e) {
+        context.commit("setMessage", "An error occurred while clearing cart.")
+      }
+    },
+
+    async removeFromCart(context, userID, prodID) {
+      try {
+        const res = await axios.delete(`${url}/user/${userID}/cart/${prodID}`);
+        const {message, err} = res.data;
+
+        if (err) {
+          context.commit("setCart", message)
+          console.log("")
+        }
+      } catch (e) {
+        context.commit("setMessage", "An error occurred while removing from cart")
+      }
+    }
   }
 });
