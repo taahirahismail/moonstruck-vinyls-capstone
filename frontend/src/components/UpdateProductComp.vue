@@ -5,21 +5,21 @@
       class="btn edit-prod-btn"
       @click="openEditModal(product.prodID)"
       data-bs-toggle="modal"
-      :data-bs-target="'#edit-prod-modal' + `${product.prodID}`"
+      :data-bs-target="'#edit-prod-modal' + product.prodID"
     >
       Edit
     </button>
 
     <div
       class="modal"
-      :id="'edit-prod-modal' + `${product.prodID}`"
+      :id="'edit-prod-modal' + product.prodID"
       tab-index="-1"
-      :aria-labelledby="'edit-prod-label' + `${product.prodID}`"
+      :aria-labelledby="'edit-prod-label' + product.prodID"
       aria-hidden="true"
     >
       <div class="modal-content">
         <div class="modal-header">
-          <h1 class="modal-title">Update Product:</h1>
+          <h1 class="modal-title" id="edit-prod-label">Update Product:</h1>
 
           <button
             type="button"
@@ -30,11 +30,11 @@
         </div>
 
         <div class="modal-body">
-          <div>
-            <label for="prodID" class="form-label">Product ID:</label>
+          <!-- <div>
+            <label for="productID" class="form-label">Product ID:</label>
 
-            <input type="text" class="input-bg" v-model="editProduct.prodID" />
-          </div>
+            <input type="text" class="input-bg" v-model="editProduct.prodID" id="productID"/>
+          </div> -->
 
           <div>
             <label for="albumName" class="form-label">Album Name:</label>
@@ -123,7 +123,7 @@ export default {
 
             model: {
                 product: {
-                    prodID: "",
+                    // prodID: "",
                     albumName: "",
                     albumArtist: "",
                     genre: "",

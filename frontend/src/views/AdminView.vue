@@ -23,7 +23,7 @@
             </tr>
           </thead>
 
-          <tbody v-for="product in products" :key="product.prodID">
+          <tbody v-for="product in products" :key="product.prodID" :product="product">
             <tr v-if="products">
               <td>{{ product.prodID }}</td>
               <td>{{ product.albumName }}</td>
@@ -82,7 +82,7 @@
             </tr>
           </thead>
 
-          <tbody v-for="user in users" :key="user.userID">
+          <tbody v-for="user in users" :key="user.userID" :user="user" >
             <tr v-if="users">
               <td>{{ user.userID }}</td>
               <td>{{ user.firstName }}</td>
@@ -98,7 +98,7 @@
                 />
               </td>
               <td>
-                <!-- insert update user comp here -->
+                <!-- <update-user-comp/> -->
 
                 <button class="btn del-btn" @click="deleteUser(user.userID)">
                   Delete
@@ -161,13 +161,17 @@ import SpinnerComp from "../components/SpinnerComp.vue";
 import AddProductComp from "@/components/AddProductComp.vue";
 import UpdateProductComp from "@/components/UpdateProductComp.vue";
 import AddUserComp from "@/components/AddUserComp.vue";
+import UpdateUserComp from '../components/UpdateUserComp.vue';
 
 export default {
+  props: ['product'],
+
   components: {
     SpinnerComp,
     AddProductComp,
     UpdateProductComp,
     AddUserComp,
+    UpdateUserComp,
   },
 
   computed: {
