@@ -207,7 +207,21 @@ export default createStore({
     },
 
   async userLogin(context, payload) {
-    // insert function here 
+    // try {
+    //   const res = await axios.post(`${url}/login`, payload);
+
+    //   const {result, token, message, err} = await res.data
+
+    //   if (result) {
+    //     context.commit('setUser', result);
+    //     context.commit('setToken', token);
+    //     context.commit('setMessage', message);
+
+    //     setTimeout(() => {
+    //       router.push()
+    //     })
+    //   }
+    // }
   },
 
     async updateUser(context, payload) {
