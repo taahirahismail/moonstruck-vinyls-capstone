@@ -207,7 +207,7 @@ export default createStore({
       }
     },
 
-  async userLogin(context, payload) {
+  async login(context, payload) {
     try {
       const res = await axios.post(`${url}/login`, payload);
       const {result, token, message, err} = await res.data
@@ -289,7 +289,7 @@ export default createStore({
 
     async updateCart(context, userID, orderID) {
       try {
-        const res = await axios.put(`${url}/user/${userID}/cart/${orderID}`);
+        const res = await axios.patch(`${url}/user/${userID}/cart/${orderID}`);
         const {results, err} = await res.data
 
         if (results) {

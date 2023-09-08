@@ -41,7 +41,7 @@
               </td>
               <td>{{ product.albumDesc }}</td>
               <td>
-                <!-- <update-product-comp /> -->
+                <update-product-comp />
 
                 <button
                   type="submit"
@@ -98,7 +98,7 @@
                 />
               </td>
               <td>
-                <!-- <update-user-comp/> -->
+                <update-user-comp/>
 
                 <button class="btn del-btn" @click="deleteUser(user.userID)">
                   Delete
