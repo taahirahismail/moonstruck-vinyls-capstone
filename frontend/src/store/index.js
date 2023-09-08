@@ -1,16 +1,16 @@
-import { createStore } from 'vuex';
-import axios from 'axios';
-import {useCookies} from 'vue3-cookies';
-const {cookies} = useCookies();
+import { createStore } from "vuex";
+import axios from "axios";
+import { useCookies } from "vue3-cookies";
+const { cookies } = useCookies();
 const url = "https://moonstruck-vinyls.onrender.com";
 
 export default createStore({
   state: {
-    users: null || JSON.parse(localStorage.getItem('user')),
+    users: null || JSON.parse(localStorage.getItem("user")),
     user: null,
     userAuth: null,
     userLoggedIn: false,
-    token: null,
+    token: null || localStorage.getItem("token"),
     products: null,
     product: null,
     selectedProduct: null,
@@ -18,7 +18,7 @@ export default createStore({
     cart: null,
     spinner: null,
     message: null,
-    asc: true
+    asc: true,
   },
 
   mutations: {
@@ -27,9 +27,9 @@ export default createStore({
     },
 
     setUser(state, user) {
-      state.user = user,
-      state.userAuth = true,
-      localStorage.setItem('user', JSON.stringify(user));
+      (state.user = user),
+        (state.userAuth = true),
+        localStorage.setItem("user", JSON.stringify(user));
     },
 
     setUserLoggedIn(state, userLoggedIn) {
@@ -77,11 +77,11 @@ export default createStore({
         state.products.reverse();
       }
 
-      state.asc = !state.asc
+      state.asc = !state.asc;
     },
 
     sortByName: (state) => {
-      state.products.sort((a,b) => {
+      state.products.sort((a, b) => {
         return a.albumName.localeCompare(b.albumName);
       });
 
@@ -89,34 +89,43 @@ export default createStore({
         state.products.reverse();
       }
 
-      state.asc = !state.asc
-    }
+      state.asc = !state.asc;
+    },
   },
 
   actions: {
     // products functions
     async fetchProducts(context) {
       try {
-        const {data} = await axios.get(`${url}/products`);
+        const { data } = await axios.get(`${url}/products`);
         context.commit("setProducts", data.results);
       } catch (e) {
-        context.commit("setMessage", "An error occurred while fetching products.");
+        context.commit(
+          "setMessage",
+          "An error occurred while fetching products."
+        );
       }
     },
 
     async fetchProduct(context, payload) {
-        try {
-        const {data} = await axios.get(`${url}/product/${payload.prodID}`, payload.data);
+      try {
+        const { data } = await axios.get(
+          `${url}/product/${payload.prodID}`,
+          payload.data
+        );
         context.commit("setProduct", data.results);
       } catch (e) {
-        context.commit("setMessage", "An error occurred while fetching a single product.");
+        context.commit(
+          "setMessage",
+          "An error occurred while fetching a single product."
+        );
       }
     },
 
     async addProduct(context, payload) {
       try {
-        const {res} = await axios.post(`${url}/product`, payload);
-        const {message, err} = await res.data;
+        const { res } = await axios.post(`${url}/product`, payload);
+        const { message, err } = await res.data;
 
         console.log(message, err);
 
@@ -127,14 +136,20 @@ export default createStore({
           context.commit("setMessage", err);
         }
       } catch (e) {
-        context.commit("setMessage", "An error occurred while adding a product.");
+        context.commit(
+          "setMessage",
+          "An error occurred while adding a product."
+        );
       }
     },
 
     async updateProduct(context, payload) {
       try {
-        const res = await axios.patch(`${url}/product/${payload.prodID}`, payload);
-        const {message, err} = await res.data;
+        const res = await axios.patch(
+          `${url}/product/${payload.prodID}`,
+          payload
+        );
+        const { message, err } = await res.data;
 
         if (err) {
           console.log("An error has occurred: ", err);
@@ -153,8 +168,8 @@ export default createStore({
 
     async deleteProduct(context, prodID) {
       try {
-        const {res} = await axios.delete(`${url}/product/${prodID}`);
-        const {message, err} = await res.data;
+        const { res } = await axios.delete(`${url}/product/${prodID}`);
+        const { message, err } = await res.data;
 
         if (err) {
           alert("An error has occurred, please try again later.");
@@ -167,14 +182,17 @@ export default createStore({
           context.commit("setMessage", "An error occurred.");
         }
       } catch (e) {
-        context.commit("setMessage", "An error occurred while deleting a product.");
+        context.commit(
+          "setMessage",
+          "An error occurred while deleting a product."
+        );
       }
     },
 
     // user functions
     async fetchUsers(context) {
       try {
-        const {data} = await axios.get(`${url}/users`);
+        const { data } = await axios.get(`${url}/users`);
         context.commit("setUsers", data.results);
       } catch (e) {
         context.commit("setMessage", "An error occurred while fetching users.");
@@ -183,62 +201,78 @@ export default createStore({
 
     async fetchUser(context, payload) {
       try {
-        const {data} = await axios.get(`${url}/user/${payload.userID}`, payload.data);
+        const { data } = await axios.get(
+          `${url}/user/${payload.userID}`,
+          payload.data
+        );
         context.commit("setUser", data.result);
       } catch (e) {
-        context.commit("setMessage", "An error occurred while fetching a single user.");
+        context.commit(
+          "setMessage",
+          "An error occurred while fetching a single user."
+        );
       }
     },
 
     async registerUser(context, payload) {
       try {
         const res = await axios.post(`${url}/register`, payload);
-        const {message, err} = await res.data;
+        const { message, err } = await res.data;
 
         if (err) {
-          context.commit("setMessage", "Something went wrong in the registration process!");
+          context.commit(
+            "setMessage",
+            "Something went wrong in the registration process!"
+          );
         }
 
         if (message) {
           context.commit("setUser", message);
+          setTimeout(() => {
+            router.push('/login')
+          }), 3000
         }
       } catch (e) {
-        context.commit("setMessage", "An error occurred.")
+        context.commit("setMessage", "An error occurred.");
       }
     },
 
-  async login(context, payload) {
-    try {
-      const res = await axios.post(`${url}/login`, payload);
-      const {result, token, message, err} = await res.data
+    async login(context, payload) {
+      try {
+        const res = await axios.post(`${url}/login`, payload);
+        const { result, token, message, err } = await res.data;
 
-      if (result) {
-        context.commit('setUser', result);
-        context.commit('setToken', token);
-        localStorage.setItem('loginToken', token);
-        localStorage.setItem('user', JSON.stringify(result));
-        context.commit('setMessage', message);
+        if (result) {
+          context.commit("setUser", result);
+          context.commit("setToken", token);
+          localStorage.setItem("loginToken", token);
+          localStorage.setItem("user", JSON.stringify(result));
+          cookies.set("setToken", token);
+          context.commit("setMessage", message);
 
-        // setTimeout(() => {
-        //   router.push('/profile')
-        // }), 3000
-      } else {
-        context.commit('setMessage', err);
+          // setTimeout(() => {
+          //   router.push('/profile')
+          // }), 3000
+        } else {
+          context.commit("setMessage", err);
+        }
+      } catch (e) {
+        console.error(e);
       }
-    } catch (e) {
-      console.error(e);
-    }
-  },
+    },
 
     async updateUser(context, payload) {
       try {
-        const res = await axios.patch(`${url}/user/${payload.userID}`, payload.data);
-        const {message, err} = res.data
+        const res = await axios.patch(
+          `${url}/user/${payload.userID}`,
+          payload.data
+        );
+        const { message, err } = res.data;
 
         if (message) {
-          context.commit("setUser", message)
+          context.commit("setUser", message);
         } else {
-          context.commit("setMessage", err)
+          context.commit("setMessage", err);
         }
       } catch (e) {
         context.commit("setMessage", "An error occurred while updating user.");
@@ -247,91 +281,126 @@ export default createStore({
 
     async deleteUser(context, userID) {
       try {
-        const {res} = await axios.delete(`${url}/user/${userID}`);
-        const {message, err} = res.data
+        const { res } = await axios.delete(`${url}/user/${userID}`);
+        const { message, err } = res.data;
 
         if (err) {
-          console.error("An error has occurred: ", err)
-          context.commit("setMessage", "An error has occurred while deleting user.")
+          console.error("An error has occurred: ", err);
+          context.commit(
+            "setMessage",
+            "An error has occurred while deleting user."
+          );
         }
 
         if (message) {
-          context.commit("setUser", message)
-          console.log("User deleted successfully!")
+          context.commit("setUser", message);
+          console.log("User deleted successfully!");
         }
       } catch (e) {
-        context.commit("setMessage", "An error occurred while deleting user.")
+        context.commit("setMessage", "An error occurred while deleting user.");
       }
     },
 
     // orders / cart functions here
     async fetchOrders(context) {
       try {
-        const {data} = await axios.get(`${url}/orders`);
+        const { data } = await axios.get(`${url}/orders`);
         context.commit("setOrders", data.results);
       } catch (e) {
-        context.commit("setMessage", "An error occurred while fetching orders.");
+        context.commit(
+          "setMessage",
+          "An error occurred while fetching orders."
+        );
       }
     },
 
     async fetchCart(context, userID) {
       try {
-        const {res} = await axios.get(`${url}/user/${userID}/carts`);
-        context.commit('setCart', res.data)
+        // const { res } = await axios.get(`${url}/user/${userID}/carts`);
+        // context.commit("setCart", res.data);
+
+        let userID = context.state.user.userID
+        await axios.get(`${url}/user/${userID}/carts`)
+        .then((res) => res.json())
+        .then((data) => {
+          console.log(data)
+          if (data != null) {
+            context.commit("setCart", data);
+          } else {
+            context.commit("setCart", null);
+          }
+        })
       } catch (e) {
-        context.commit("setMessage", "An error occurred while fetching cart.")
+        context.commit("setMessage", "An error occurred while fetching cart.");
       }
     },
 
-    async addToCart(context, {payload}) {
+    async addToCart(context, { payload }) {
+      try {
+        let userID = localStorage.getItem("userID");
+        const { res, message } = await axios.post(
+          `${url}/user/${userID}/cart`,
+          payload
+        );
 
+        if (res) {
+          context.commit("setCart", res.data);
+        } else {
+          context.commit("setMessage", message);
+        }
+      } catch (e) {
+        context.commit("setMessage", "An error occurred while adding to cart.");
+      }
     },
 
     async updateCart(context, userID, orderID) {
       try {
         const res = await axios.patch(`${url}/user/${userID}/cart/${orderID}`);
-        const {results, err} = await res.data
+        const { results, err } = await res.data;
 
         if (results) {
-          context.commit('setCart', results)
+          context.commit("setCart", results);
         } else {
-          context.commit('setMessage', err)
+          context.commit("setMessage", err);
         }
       } catch (e) {
-        context.commit("setMessage", "An error occurred while updating cart.")
+        context.commit("setMessage", "An error occurred while updating cart.");
       }
     },
 
     async clearCart(context, userID) {
       try {
         const res = await axios.delete(`${url}/user/${userID}/cart`);
-        const {message, err} = res.data;
+        const { message, err } = res.data;
 
         if (err) {
-          context.commit("setMessage", err)
+          context.commit("setMessage", err);
         }
 
         if (message) {
-          context.commit("setCart", message)
-          console.log("Cart cleared successfully!")
+          context.commit("setCart", message);
+          console.log("Cart cleared successfully!");
         }
       } catch (e) {
-        context.commit("setMessage", "An error occurred while clearing cart.")
+        context.commit("setMessage", "An error occurred while clearing cart.");
       }
     },
 
     async removeFromCart(context, userID, prodID) {
       try {
         const res = await axios.delete(`${url}/user/${userID}/cart/${prodID}`);
-        const {message, err} = res.data;
+        const { message, err } = res.data;
 
         if (err) {
-          context.commit("setCart", message)
-          console.log("")
+          context.commit("setCart", message);
+          console.log("");
         }
       } catch (e) {
-        context.commit("setMessage", "An error occurred while removing from cart")
+        context.commit(
+          "setMessage",
+          "An error occurred while removing from cart"
+        );
       }
-    }
-  }
+    },
+  },
 });

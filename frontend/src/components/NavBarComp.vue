@@ -46,7 +46,8 @@
           <li class="nav-item">
             <router-link to="/checkout" class="nav-link"
               >Checkout</router-link
-            >
+            > 
+            <!-- <cart-comp/> -->
           </li>
 
           <li class="nav-item">
@@ -61,7 +62,10 @@
 </template>
 
 <script>
+import CartComp from './CartComp.vue'
+
 export default {
+  components: { CartComp },
     
 }
 </script>
