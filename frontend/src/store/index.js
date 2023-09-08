@@ -219,9 +219,9 @@ export default createStore({
         localStorage.setItem('user', JSON.stringify(result));
         context.commit('setMessage', message);
 
-        setTimeout(() => {
-          router.push('/')
-        }), 3000
+        // setTimeout(() => {
+        //   router.push('/profile')
+        // }), 3000
       } else {
         context.commit('setMessage', err);
       }

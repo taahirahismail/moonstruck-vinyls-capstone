@@ -11,7 +11,7 @@
 
         <div class="mb-3">
           <label for="userPass" class="form-label">Password: </label>
-          <input type="text" id="userPass" class="form-control" v-model="payload.userPass" required />
+          <input type="password" id="userPass" class="form-control" v-model="payload.userPass" required />
         </div>
 
         <div class="text-center p-3">
@@ -31,6 +31,8 @@
 
 <script>
 export default {
+  props: ['payload'],
+
     data() {
         return {
             payload: {
@@ -53,7 +55,7 @@ export default {
     methods: {
         login() {
             this.$store.dispatch('login', this.payload)
-            // this.$router.push("/");
+            this.$router.push("/profile");
         }
     }
 };
