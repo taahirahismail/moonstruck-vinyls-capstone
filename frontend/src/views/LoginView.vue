@@ -6,7 +6,7 @@
 
         <div class="mb-3">
           <label for="emailAdd" class="form-label">Email: </label>
-          <input type="text" id="emailAdd" class="form-control" v-model="payload.emailAdd" required />
+          <input type="email" id="emailAdd" class="form-control" v-model="payload.emailAdd" required />
         </div>
 
         <div class="mb-3">
@@ -30,6 +30,9 @@
 </template>
 
 <script>
+import { useCookies } from "vue3-cookies";
+const { cookies } = useCookies();
+
 export default {
   props: ['payload'],
 
@@ -57,6 +60,10 @@ export default {
             this.$store.dispatch('login', this.payload)
             this.$router.push("/profile");
         }
+    },
+
+    mounted() {
+      console.log(cookies.get('setToken'));
     }
 };
 </script>

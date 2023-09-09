@@ -1,5 +1,7 @@
 import { createStore } from "vuex";
 import axios from "axios";
+import sweet from 'sweet-alert'
+// import authUser from '@/services/AuthenticateUser'
 import { useCookies } from "vue3-cookies";
 const { cookies } = useCookies();
 const url = "https://moonstruck-vinyls.onrender.com";
@@ -245,14 +247,10 @@ export default createStore({
         if (result) {
           context.commit("setUser", result);
           context.commit("setToken", token);
-          localStorage.setItem("loginToken", token);
+          localStorage.setItem("setToken", token);
           localStorage.setItem("user", JSON.stringify(result));
           cookies.set("setToken", token);
           context.commit("setMessage", message);
-
-          // setTimeout(() => {
-          //   router.push('/profile')
-          // }), 3000
         } else {
           context.commit("setMessage", err);
         }

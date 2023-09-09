@@ -2,15 +2,32 @@
   <div>
     <h1 class="p-4 text-center heading-text">Shop Our Vinyls !</h1>
 
-    <div>
-      <!-- sort filter search goes here -->
-      sort filter search
+    <div class="m-3 p-3 d-flex justify-content-between">
+      <select v-model="genre" class="select">
+        <option value="All">All Genres</option>
+        <option value="Rock">Rock</option>
+        <option value="Soul">Soul</option>
+        <option value="Punk">Punk</option>
+        <option value="Reggae">Reggae</option>
+      </select>
+      
+      <input type="text" v-model="search" placeholder="search" class="search"/>
+
+      <div>
+        <button class="sort-btn" @click="sortByPrice">Price Sorting</button>
+        <button class="sort-btn" @click="sortByName">Name Sorting</button>
+      </div>
     </div>
 
     <div v-if="products" class="row m-3 d-flex justify-content-center">
-      <div v-for="product in products" :key="product" :product="product" class="col-6">
+      <div
+        v-for="product in products"
+        :key="product"
+        :product="product"
+        class="col-6"
+      >
         <div class="card m-3 p-5" id="prod-card">
-          <div class="prod-img">
+          <div class="text-center prod-img">
             <img
               :src="product.prodImg"
               :alt="product.albumName"
@@ -41,9 +58,7 @@
       <spinner-comp class="mx-auto my-5" />
     </div>
 
-    <h3 class="text-center my-5 gold-text">
-        More coming soon... !
-    </h3>
+    <h3 class="text-center my-5 gold-text">More coming soon... !</h3>
   </div>
 </template>
 
@@ -57,13 +72,30 @@ export default {
     SpinnerComp,
   },
 
+  data() {
+    return {
+      search: "",
+      genre: "All",
+    };
+  },
+
   computed: {
     products() {
-      return this.$store.state.products;
+      return this.$store.state.products?.filter((product) => {
+        let isMatch = true;
+        if (
+          !product.albumName.toLowerCase().includes(this.search.toLowerCase())
+        ) {
+          isMatch = false;
+        }
+        if (this.genre !== "All" && this.genre !== product.genre) {
+          isMatch = false;
+        }
+        return isMatch;
+      });
     },
-
-    // insert search methods here
   },
+
   mounted() {
     this.$store.dispatch("fetchProducts");
   },
@@ -78,16 +110,13 @@ export default {
       this.$router.push({ name: "product", params: { prodID: prodID } });
     },
 
-    // sort by price
+    sortByPrice() {
+      this.$store.commit("sortByPrice");
+    },
 
-    // sort by name
-  },
-
-  data() {
-    return {
-      search: "",
-      category: "",
-    };
+    sortByName() {
+      this.$store.commit("sortByName");
+    }
   },
 };
 </script>
@@ -97,15 +126,46 @@ export default {
   background: #0a192f;
   border: 3px solid #f4f4f4;
   color: #f4f4f4;
+  min-height: 100vh;
 }
 
 .heading-text {
-    font-family: "Archivo Black", sans-serif;
+  font-family: "Archivo Black", sans-serif;
 }
 
 .gold-text {
   color: #ffd700;
-  font-family: 'Montserrat Alternates', sans-serif;
+  font-family: "Montserrat Alternates", sans-serif;
+}
+
+.select {
+  background: #010111;
+  padding: 5px;
+  border: 1px solid #ffd700;
+  border-radius: 5px;
+  color: #ffd700;
+}
+
+.search {
+  background: #010111;
+  color: #ffd700;
+  border: 1px solid #ffd700;
+  border-radius: 5px;
+  padding: 5px;
+}
+
+.sort-btn {
+  margin-inline: 3px;
+  padding: 5px;
+  background: #010111;
+  color: #ffd700;
+  border: 1px solid #ffd700;
+  border-radius: 5px;
+}
+
+.sort-btn:hover {
+  background: #ffd700;
+  color: #010111;
 }
 
 .details-btn {
@@ -122,5 +182,9 @@ export default {
   -webkit-transition: all 0.2s ease-out;
   -moz-transition: all 0.2s ease-out;
   transition: all 0.2s ease-out;
+}
+
+.straighten {
+  min-height: 100vh;
 }
 </style>
