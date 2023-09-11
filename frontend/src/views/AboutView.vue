@@ -29,57 +29,61 @@
 
     <div class="row d-flex align-items-center justify-content-center">
       <div class="m-2 p-3 col-5 text-center dark-bg">
-        <div class="insert-img"></div>
+        <div class="text-center">
+          <img src="https://i.postimg.cc/j2prBHCq/20230904-185601.jpg" alt="Taahirah-1" class="img-fluid mb-4" style="border: 2px solid #FFD700; border-radius: 50%; max-width: 75%;">
+        </div>
         <div>
-          <h3>Team Member 1</h3>
-          <cite>Position</cite> <br />
+          <div class="mb-3 gold-text">
+            <h3>Taahirah Ismail</h3>
+            <cite>CEO</cite> <br />
+          </div>
           <span
-            >Lorem ipsum dolor sit amet consectetur, adipisicing elit. Culpa
-            perferendis corporis porro similique earum. Fugiat voluptates est
-            minus officiis, debitis dolores aperiam sed vero quae quaerat
-            sapiente sint voluptate cupiditate!</span
+            >A visionary at the helm, Taahirah Ismail brings a profound love for music and an unwavering commitment to preserving its magic. With a sharp business acumen and a passion for vinyl, she's the driving force behind Moonstruck Vinyls' mission to rekindle nostalgia and inspire a new generation of music enthusiasts. Taahirah's dedication to curating the perfect vinyl experience is reflected in every facet of the Moonstruck Vinyls journey, ensuring that each customer's musical voyage is nothing short of extraordinary.</span
           >
         </div>
       </div>
 
       <div class="m-2 p-3 col-5 text-center dark-bg">
-        <div class="insert-img"></div>
+        <div class="text-center">
+          <img src="https://i.postimg.cc/MGMgJM2v/20220819-170611.jpg" alt="Taahirah-2" class="img-fluid mb-4" style="border: 2px solid #FFD700; border-radius: 50%; max-width: 75%;">
+        </div>
         <div>
-          <h3>Team Member 2</h3>
-          <cite>Position</cite> <br />
+          <div class="mb-3 gold-text">
+            <h3>Taahirah Ismail</h3>
+            <cite>Procurement Manager</cite> <br />
+          </div>
           <span
-            >Lorem ipsum dolor sit amet consectetur, adipisicing elit. Culpa
-            perferendis corporis porro similique earum. Fugiat voluptates est
-            minus officiis, debitis dolores aperiam sed vero quae quaerat
-            sapiente sint voluptate cupiditate!</span
+            >With an impeccable eye for detail and an unwavering commitment to quality, Taahirah Ismail spearheads the acquisition of Moonstruck Vinyls' exceptional record collection. Her passion for vinyl culture and her dedication to sourcing the finest classics, rarities, and contemporary gems make her an integral part of our mission to deliver a curated selection that resonates with music enthusiasts. Taahirah's meticulous approach ensures that every record that graces our collection meets the high standards that Moonstruck Vinyls is known for.</span
           >
         </div>
       </div>
 
       <div class="m-2 p-3 col-5 text-center justify-content-center dark-bg">
-        <div class="insert-img"></div>
+        <div class="text-center">
+          <img src="https://i.postimg.cc/QtnDJG3T/20230602-205919.jpg" alt="Taahirah-3" class="img-fluid mb-4" style="border: 2px solid #FFD700; border-radius: 50%; max-width: 75%;">
+        </div>
         <div>
-          <h3>Team Member 3</h3>
-          <cite>Position</cite> <br />
+          <div class="mb-3 gold-text">
+            <h3>Taahirah Ismail</h3>
+            <cite>Marketing Manager</cite> <br />
+          </div>
           <span
-            >Lorem ipsum dolor sit amet consectetur, adipisicing elit. Culpa
-            perferendis corporis porro similique earum. Fugiat voluptates est
-            minus officiis, debitis dolores aperiam sed vero quae quaerat
-            sapiente sint voluptate cupiditate!</span
+            >Taahirah is the creative force driving Moonstruck Vinyls' outreach and engagement. With a keen understanding of the pulse of music culture and a knack for storytelling, she crafts compelling campaigns that resonate with vinyl aficionados and newcomers alike. Her strategic vision and passion for music manifest in Moonstruck Vinyls' online presence, ensuring that every interaction, from social media to newsletters, is a harmonious celebration of the vinyl experience. Taahirah's dedication to fostering a vibrant community of music enthusiasts makes her an essential part of Moonstruck Vinyls' journey.</span
           >
         </div>
       </div>
 
       <div class="m-2 p-3 col-5 text-center dark-bg">
-        <div class="insert-img"></div>
+        <div class="text-center">
+          <img src="https://i.postimg.cc/qvZWFcFP/20220819-164916.jpg" alt="Taahirah-4" class="img-fluid mb-4" style="border: 2px solid #FFD700; border-radius: 50%; max-width: 75%;">
+        </div>
         <div>
-          <h3>Team Member 4</h3>
-          <cite>Position</cite> <br />
+          <div class="mb-3 gold-text">
+            <h3>Taahirah Ismail</h3>
+            <cite>Web Development</cite> <br />
+          </div>
           <span
-            >Lorem ipsum dolor sit amet consectetur, adipisicing elit. Culpa
-            perferendis corporis porro similique earum. Fugiat voluptates est
-            minus officiis, debitis dolores aperiam sed vero quae quaerat
-            sapiente sint voluptate cupiditate!</span
+            >Taahirah is the technical wizard behind Moonstruck Vinyls' immersive online experience. With her expertise in web development, she transforms our vision into a digital reality, creating a seamless platform for music lovers to explore and connect. Her dedication to user-friendly design and innovative features ensures that Moonstruck Vinyls' website is not just a storefront but a portal to a world of musical nostalgia. Taahirah's meticulous attention to detail and commitment to a flawless user experience make her an invaluable part of Moonstruck Vinyls' digital journey.</span
           >
         </div>
       </div>
