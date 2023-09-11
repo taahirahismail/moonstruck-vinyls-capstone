@@ -29,8 +29,8 @@ export default createStore({
     },
 
     setUser(state, user) {
-      (state.user = user),
-        (state.userAuth = true),
+      state.user = user,
+        state.userAuth = true,
         localStorage.setItem("user", JSON.stringify(user));
     },
 

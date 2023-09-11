@@ -11,7 +11,7 @@
         <option value="Reggae">Reggae</option>
       </select>
       
-      <input type="text" v-model="search" placeholder="search" class="search"/>
+      <input type="text" v-model="search" placeholder="Search our wide selection of curated vinyl's!" class="w-75 search"/>
 
       <div>
         <button class="sort-btn" @click="sortByPrice">Price Sorting</button>
@@ -24,7 +24,7 @@
         v-for="product in products"
         :key="product"
         :product="product"
-        class="col-6"
+        class="col-4"
       >
         <div class="card m-3 p-5" id="prod-card">
           <div class="text-center prod-img">
@@ -36,7 +36,7 @@
             />
           </div>
 
-          <div class="text-center">
+          <div class="text-center mt-auto">
             <h2 class="heading-text">{{ product.albumName }}</h2>
             <cite class="gold-text">{{ product.albumArtist }}</cite>
 
@@ -126,7 +126,7 @@ export default {
   background: #0a192f;
   border: 3px solid #f4f4f4;
   color: #f4f4f4;
-  min-height: 100vh;
+  min-height: 98%;
 }
 
 .heading-text {

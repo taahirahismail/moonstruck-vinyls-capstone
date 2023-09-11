@@ -1,18 +1,26 @@
 <template>
   <div>
-    <div v-if="product" :product="product" class="card mx-auto my-3 p-5 w-75 text-center prod-card">
+    <div
+      v-if="product"
+      :product="product"
+      class="card mx-auto my-3 p-5 w-75 text-center prod-card"
+    >
       <div class="text-center">
-        <img :src="product.prodImg" :alt="product.albumName" class="img-fluid mb-5"/>
+        <img
+          :src="product.prodImg"
+          :alt="product.albumName"
+          class="img-fluid mb-5"
+        />
       </div>
 
       <h1 class="heading-text">{{ product.albumName }}</h1>
-      <cite class="gold-text">by {{ product.albumArtist }}</cite> <br>
+      <cite class="gold-text">by {{ product.albumArtist }}</cite> <br />
       <p>Genre: {{ product.genre }}</p>
       <p>{{ product.albumDesc }}</p>
 
       <div class="d-flex justify-content-between mt-5">
         <h3 class="gold-text">R{{ product.price }}</h3>
-        <button class="btn add-cart-btn">Add to Cart</button>
+        <button class="btn add-cart-btn" @click="addToCart(product)">Add to Cart</button>
       </div>
     </div>
 
@@ -26,7 +34,7 @@
 import SpinnerComp from "../components/SpinnerComp.vue";
 
 export default {
-    props: ["product"],
+  props: ["product"],
 
   components: { SpinnerComp },
 
@@ -39,6 +47,19 @@ export default {
       return this.$store.dispatch("fetchProduct");
     },
   },
+
+  methods: {
+    async addToCart(product) {
+      const userID = localStorage.getItem('userID');
+      this.$store.dispatch('addToCart', {
+        userID: userID,
+        payload: {
+          userID: userID,
+          productID: product.productID
+        }
+      })
+    }
+  }
 };
 </script>
 
@@ -50,7 +71,7 @@ export default {
 
 .gold-text {
   color: #ffd700;
-  font-family: 'Montserrat Alternates', sans-serif;
+  font-family: "Montserrat Alternates", sans-serif;
 }
 
 .prod-card {
