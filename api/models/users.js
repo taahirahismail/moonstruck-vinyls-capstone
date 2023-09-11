@@ -4,7 +4,7 @@ const { createToken } = require("../middleware/authenticateUser");
 
 class Users {
   fetchUsers(req, res) {
-    const query = `SELECT userID, firstName, lastName, emailAdd, userPass, userImg FROM Users;`;
+    const query = `SELECT userID, firstName, userRole, lastName, emailAdd, userPass, userImg FROM Users;`;
 
     db.query(query, (err, results) => {
       if (err) throw err;
@@ -17,7 +17,7 @@ class Users {
   }
 
   fetchUser(req, res) {
-    const query = `SELECT userID, firstName, lastName, emailAdd, userPass, userImg FROM Users WHERE userID = ${req.params.id};`;
+    const query = `SELECT userID, firstName, userRole, lastName, emailAdd, userPass, userImg FROM Users WHERE userID = ${req.params.id};`;
 
     db.query(query, (err, result) => {
       if (err) throw err;
@@ -65,7 +65,7 @@ class Users {
     const { emailAdd, userPass } = req.body;
 
     // query
-    const query = `SELECT userID, firstName, lastName, emailAdd, userPass, userImg FROM Users WHERE emailAdd = '${emailAdd}';`;
+    const query = `SELECT userID, firstName, userRole, lastName, emailAdd, userPass, userImg FROM Users WHERE emailAdd = '${emailAdd}';`;
 
     db.query(query, async (err, result) => {
       if (err) throw err;
