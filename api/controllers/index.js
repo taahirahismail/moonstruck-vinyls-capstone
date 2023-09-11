@@ -10,7 +10,7 @@ routes.get("/users", (req, res) => {
   users.fetchUsers(req, res);
 });
 
-routes.get("/user/:id", verifyAToken, (req, res) => {
+routes.get("/user/:id", (req, res) => {
   users.fetchUser(req, res);
 });
 
@@ -39,7 +39,7 @@ routes.get("/products", (req, res) => {
   products.fetchProducts(req, res);
 });
 
-routes.get("/product/:id", verifyAToken, (req, res) => {
+routes.get("/product/:id", (req, res) => {
   products.fetchProduct(req, res);
 });
 
@@ -64,11 +64,11 @@ routes.get("/orders", (req, res) => {
   orders.fetchOrders(req, res);
 });
 
-routes.get("/user/:id/carts", verifyAToken, (req, res) => {
+routes.get("/user/:id/carts", (req, res) => {
   orders.fetchCart(req, res);
 });
 
-routes.post("/user/:id/cart", verifyAToken, bodyParser.json(), (req, res) => {
+routes.post("/user/:id/cart", bodyParser.json(), (req, res) => {
   orders.addToCart(req, res);
 });
 
