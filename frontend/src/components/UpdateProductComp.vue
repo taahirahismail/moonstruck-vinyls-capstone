@@ -37,70 +37,72 @@
             <input type="text" class="input-bg" v-model="editProduct.prodID" id="productID"/>
           </div> -->
 
-          <div class="mb-3">
-            <label for="albumName" class="form-label">Album Name:</label>
-
-            <input
-              type="text"
-              class="form-control input-bg"
-              v-model="editProduct.albumName"
-            />
-          </div>
-
-          <div class="mb-3">
-            <label for="albumArtist" class="form-label">Album Artist:</label>
-
-            <input
-              type="text"
-              class="form-control input-bg"
-              v-model="editProduct.albumArtist"
-            />
-          </div>
-
-          <div class="mb-3">
-            <label for="genre" class="form-label">Genre:</label>
-
-            <input type="text" class="form-control input-bg" v-model="editProduct.genre" />
-          </div>
-
-          <div class="mb-3">
-            <label for="price" class="form-label">Price:</label>
-
-            <input type="number" class="form-control input-bg" v-model="editProduct.price" />
-          </div>
-
-          <div class="mb-3">
-            <label for="quantity" class="form-label">Quantity:</label>
-
-            <input
-              type="number"
-              class="form-control input-bg"
-              v-model="editProduct.quantity"
-            />
-          </div>
-
-          <div class="mb-3">
-            <label for="prodImg" class="form-label">Product Image:</label>
-
-            <input type="text" class="form-control input-bg" v-model="editProduct.prodImg" />
-          </div>
-
-          <div class="mb-3">
-            <label for="albumDesc" class="form-label">Description:</label>
-
-            <input
-              type="text"
-              class="form-control input-bg"
-              v-model="editProduct.albumDesc"
-            />
-          </div>
+          <form @submit.prevent="updateProduct(product.prodID)">          
+            <div class="mb-3">
+              <label for="albumName" class="form-label">Album Name:</label>
+  
+              <input
+                type="text"
+                class="form-control input-bg"
+                v-model="editProduct.albumName"
+              />
+            </div>
+  
+            <div class="mb-3">
+              <label for="albumArtist" class="form-label">Album Artist:</label>
+  
+              <input
+                type="text"
+                class="form-control input-bg"
+                v-model="editProduct.albumArtist"
+              />
+            </div>
+  
+            <div class="mb-3">
+              <label for="genre" class="form-label">Genre:</label>
+  
+              <input type="text" class="form-control input-bg" v-model="editProduct.genre" />
+            </div>
+  
+            <div class="mb-3">
+              <label for="price" class="form-label">Price:</label>
+  
+              <input type="number" class="form-control input-bg" v-model="editProduct.price" />
+            </div>
+  
+            <div class="mb-3">
+              <label for="quantity" class="form-label">Quantity:</label>
+  
+              <input
+                type="number"
+                class="form-control input-bg"
+                v-model="editProduct.quantity"
+              />
+            </div>
+  
+            <div class="mb-3">
+              <label for="prodImg" class="form-label">Product Image:</label>
+  
+              <input type="text" class="form-control input-bg" v-model="editProduct.prodImg" />
+            </div>
+  
+            <div class="mb-3">
+              <label for="albumDesc" class="form-label">Description:</label>
+  
+              <input
+                type="text"
+                class="form-control input-bg"
+                v-model="editProduct.albumDesc"
+              />
+            </div>
+          </form>
         </div>
 
         <div class="modal-footer">
           <button
-            type="button"
+            type="submit"
             class="btn update-btn"
-            @click="updateProduct(product.prodID)"
+            @click="this.$store.dispatch('updateProduct', editProduct)"
           >
             Update
           </button>
@@ -136,11 +138,11 @@ export default {
     };
   },
 
-  computed: {
-    currentProduct() {
-      return this.$store.state.product;
-    },
-  },
+  // computed: {
+  //   currentProduct() {
+  //     return this.$store.state.product;
+  //   },
+  // },
 
   methods: {
     openEditModal(prodID) {
