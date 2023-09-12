@@ -26,10 +26,10 @@
       </div>
     </div>
 
-    <div class="d-flex justify-content-between">
+    <div class="m-3 p-3 d-flex align-items-center justify-content-between gold-text">
       Total: R (how do you add the total again?)
 
-      <button type="submit" @click="clearCart(product.userID)">
+      <button type="submit" @click="clearCart(product.userID)" class="p-2 pay-btn">
         Proceed With Payment
       </button>
     </div>
@@ -85,6 +85,11 @@ export default {
   font-family: "Archivo Black", sans-serif;
 }
 
+.gold-text {
+  color: #ffd700;
+  font-family: "Montserrat Alternates", sans-serif;
+}
+
 .blue-bg {
   background: #0a192f;
   border: 3px solid #f4f4f4;
@@ -94,5 +99,16 @@ export default {
   background: #010111;
   border: 2px solid #f4f4f4;
   color: #f4f4f4;
+}
+
+.pay-btn {
+  background: #010111;
+  color: #FFD700;
+  border: 3px solid #010111;
+  border-radius: 5px;
+}
+
+.pay-btn:hover {
+  border: 3px solid #FFD700;
 }
 </style>
