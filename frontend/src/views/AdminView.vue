@@ -7,7 +7,7 @@
         <h3 class="text-center p-3">Products</h3>
         <add-product-comp />
       </div>
-      <div class="d-flex justify-content-center">
+      <div class="d-flex justify-content-center media-table">
         <table>
           <thead>
             <tr>
@@ -17,8 +17,8 @@
               <th>Genre</th>
               <th>Price</th>
               <th>Quantity</th>
-              <th>Product Image</th>
-              <th>Album Description</th>
+              <th class="media-hide-2">Product Image</th>
+              <th class="media-hide">Album Description</th>
               <th>Action</th>
             </tr>
           </thead>
@@ -31,7 +31,7 @@
               <td>{{ product.genre }}</td>
               <td>R{{ product.price }}</td>
               <td>{{ product.quantity }}</td>
-              <td class="prod-img">
+              <td class="prod-img media-hide-2">
                 <img
                   :src="product.prodImg"
                   :alt="product.albumName"
@@ -39,13 +39,13 @@
                   class="img-fluid prod-img"
                 />
               </td>
-              <td>{{ product.albumDesc }}</td>
+              <td class="media-font">{{ product.albumDesc }}</td>
               <td>
                 <update-product-comp />
 
                 <button
                   type="submit"
-                  class="btn del-btn"
+                  class="btn del-btn media-font-2"
                   @click="deleteProduct(product.prodID)"
                 >
                   Delete
@@ -68,7 +68,7 @@
         <add-user-comp/>
       </div>
 
-      <div class="d-flex justify-content-center">
+      <div class="d-flex justify-content-center media-table">
         <table>
           <thead>
             <tr>
@@ -77,7 +77,7 @@
               <th>Last Name</th>
               <th>User Role</th>
               <th>Email</th>
-              <th>Profile Image</th>
+              <th class="media-hide-2">Profile Image</th>
               <th>Action</th>
             </tr>
           </thead>
@@ -88,8 +88,8 @@
               <td>{{ user.firstName }}</td>
               <td>{{ user.lastName }}</td>
               <td>{{ user.userRole }}</td>
-              <td>{{ user.emailAdd }}</td>
-              <td class="user-img">
+              <td class="media-font-2">{{ user.emailAdd }}</td>
+              <td class="user-img media-hide-2">
                 <img
                   :src="user.userImg"
                   :alt="user.firstName"
@@ -100,7 +100,7 @@
               <td>
                 <update-user-comp/>
 
-                <button class="btn del-btn" @click="deleteUser(user.userID)">
+                <button class="btn del-btn media-font-2" @click="deleteUser(user.userID)">
                   Delete
                 </button>
               </td>
@@ -119,7 +119,7 @@
         <h3 class="text-center p-3">Orders</h3>
       </div>
 
-      <div class="d-flex justify-content-center">
+      <div class="d-flex justify-content-center media-table">
         <table>
           <thead>
             <tr>
@@ -140,7 +140,7 @@
               <td>
                 <!-- insert update orders comp -->
 
-                <button class="btn del-btn" @click="clearCart(cart.userID)">
+                <button class="btn del-btn media-font-2" @click="clearCart(cart.userID)">
                   Delete
                 </button>
               </td>
@@ -279,5 +279,39 @@ table {
 
 .user-img {
   max-width: 75px;
+}
+
+@media screen and (max-width: 1100px) {
+  .media-font {
+    font-size: 10px;
+  }
+}
+
+@media screen and (max-width: 850px) {
+  .media-font, .media-hide {
+    display: none;
+  }
+}
+
+@media screen and (max-width: 850px) {
+  .media-font, .media-hide {
+    display: none;
+  }
+}
+
+@media screen and (max-width: 730px) {
+  .media-hide-2 {
+    display: none;
+  }
+}
+
+@media screen and (max-width: 600px) {
+  .media-font-2 {
+    font-size: 12px;
+  }
+
+  .media-table {
+    overflow: scroll;
+  }
 }
 </style>

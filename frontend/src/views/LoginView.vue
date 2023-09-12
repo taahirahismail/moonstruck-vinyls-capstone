@@ -1,6 +1,6 @@
 <template>
-  <div>
-    <div class="card mx-auto my-5 p-5 w-50 blue-bg">
+  <div class="d-flex align-items-center justify-content-center">
+    <div class="card mx-auto my-5 p-5 w-50 align-items-center blue-bg">
       <form @submit.prevent="login">
         <h1 class="text-center heading-text">Login :</h1>
 
@@ -34,9 +34,7 @@ import { useCookies } from "vue3-cookies";
 const { cookies } = useCookies();
 
 export default {
-  props: ['payload'],
-
-    data() {
+   data() {
         return {
             payload: {
                 emailAdd: '',
@@ -96,5 +94,11 @@ export default {
 .reg-link {
     color: #f4f4f4;
     font-size: 20px;
+}
+
+@media screen and (max-width: 900px) {
+  .blue-bg {
+    width: 90% !important;
+  }
 }
 </style>

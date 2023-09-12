@@ -2,7 +2,7 @@
   <div>
     <h1 class="p-4 text-center heading-text">Shop Our Vinyls !</h1>
 
-    <div class="m-3 p-3 d-flex justify-content-between">
+    <div class="m-3 p-3 d-flex justify-content-between media-fix-2">
       <select v-model="genre" class="select">
         <option value="All">All Genres</option>
         <option value="Rock">Rock</option>
@@ -11,20 +11,20 @@
         <option value="Reggae">Reggae</option>
       </select>
       
-      <input type="text" v-model="search" placeholder="Search our wide selection of curated vinyl's!" class="w-75 search"/>
+      <input type="text" v-model="search" placeholder="Search our wide selection of curated vinyl's!" class="w-50 search"/>
 
-      <div>
-        <button class="sort-btn" @click="sortByPrice">Price Sorting</button>
-        <button class="sort-btn" @click="sortByName">Name Sorting</button>
+      <div class="media-fix-3">
+        <button class="sort-btn" @click="sortByPrice">Sort (R)</button>
+        <button class="sort-btn" @click="sortByName">Sort (A-Z)</button>
       </div>
     </div>
 
-    <div v-if="products" class="row m-3 d-flex justify-content-center">
+    <div v-if="products" class="row m-3 d-flex justify-content-center media-col">
       <div
         v-for="product in products"
         :key="product"
         :product="product"
-        class="col-4"
+        class="col-4 media-fix"
       >
         <div class="card m-3 p-5" id="prod-card">
           <div class="text-center prod-img">
@@ -36,11 +36,11 @@
             />
           </div>
 
-          <div class="text-center mt-auto">
+          <div class="text-center mt-auto media-text-fix">
             <h2 class="heading-text">{{ product.albumName }}</h2>
             <cite class="gold-text">{{ product.albumArtist }}</cite>
 
-            <div class="p-3 d-flex justify-content-between">
+            <div class="p-3 d-flex align-items-center justify-content-between">
               R {{ product.price }}
               <button
                 @click="viewProduct(product.prodID)"
@@ -186,5 +186,78 @@ export default {
 
 .straighten {
   min-height: 100vh;
+}
+
+@media screen and (max-width: 1160px) {
+  #prod-card {
+    padding: 10px !important;
+  }
+}
+
+@media screen and (max-width: 900px) {
+  .media-col {
+    display: grid !important;
+    grid-template-columns: auto auto;
+  }
+
+  .media-fix {
+    width: 100%;
+  }
+}
+
+@media screen  and (max-width: 740px) {
+  .media-fix-2 {
+    width: 97%;
+    display: flex !important;
+    justify-content: center !important;
+  }
+}
+
+@media screen and (max-width: 640px) {
+  .media-text-fix>h2 {
+    font-size: 20px;
+  }
+
+  .media-text-fix>cite, .media-fix, .media-fix>button {
+    font-size: 12px;
+  }
+}
+
+@media screen and (max-width: 590px) {
+  .media-col {
+    display: flex !important;
+  }
+
+  .media-text-fix>h2 {
+    font-size: 30px;
+  }
+
+  .media-text-fix>cite, .media-fix, .media-fix>button {
+    font-size: 20px;
+  }
+
+  .media-fix-2 {
+    display: grid !important;
+    grid-template-columns: auto auto auto;
+    gap: 10px;
+  }
+
+  .search {
+    width: 100% !important;
+  }
+}
+
+@media screen and (max-width: 455px) {
+  .media-fix-2 {
+    display: flex !important;
+    flex-direction: column;
+    justify-content: center !important;
+    width: 90%;
+  }
+
+  .media-fix-3 {
+    display: flex !important;
+    justify-content: center;
+  }
 }
 </style>

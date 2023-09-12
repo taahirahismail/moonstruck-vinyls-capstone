@@ -22,13 +22,13 @@
     <div>
       <h1 class="m-3 text-center heading-text">Featured Products</h1>
 
-      <div class="row m-3 p-2 d-flex justify-content-center">
+      <div class="row m-3 p-2 d-flex justify-content-center media-col">
         <div class="col-3 m-3 p-3 text-center prod-card">
           <img src="https://i.postimg.cc/4x8yCkyW/vinyl-4.png" alt="" class="img-fluid">
           
           <div class="text-center">
-            <h4 class="gold-text">Album Name</h4>
-            <cite>Album Artist</cite> <br> <br>
+            <h4 class="gold-text">Don't Care</h4>
+            <cite>Klark Kent</cite> <br> <br>
 
             <router-link to="/products" class="view-btn">View More</router-link>
           </div>
@@ -38,8 +38,8 @@
           <img src="https://i.postimg.cc/KYnh0jsr/vinyl-1.png" alt="" class="img-fluid">
 
           <div class="text-center">
-            <h4 class="gold-text">Album Name</h4>
-            <cite>Album Artist</cite> <br> <br>
+            <h4 class="gold-text">9 O'Clock</h4>
+            <cite>Snips</cite> <br> <br>
 
             <router-link to="/products" class="view-btn">View More</router-link>
           </div>
@@ -49,8 +49,8 @@
           <img src="https://i.postimg.cc/DyT8LPRP/vinyl-2.png" alt="" class="img-fluid">
 
           <div class="text-center">
-            <h4 class="gold-text">Album Name</h4>
-            <cite>Album Artist</cite> <br> <br>
+            <h4 class="gold-text">Wuthering Heights</h4>
+            <cite>Jah Wurzel</cite> <br> <br>
 
             <router-link to="/products" class="view-btn">View More</router-link>
           </div>
@@ -260,4 +260,30 @@ export default {
 	100% {margin-left: -1000px;}
 }
 
+@media screen and (max-width: 685px) {
+  .media-col {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .prod-card {
+    width: 90%;
+  }
+
+  .main-text h1 {
+  font-size: 300%;
+}
+}
+
+@media screen and (max-width: 410px) {
+  .main-text h1 {
+    font-size: 200%;
+  }
+
+  div>span>cite {
+    font-size: 12px;
+  }
+}
 </style>

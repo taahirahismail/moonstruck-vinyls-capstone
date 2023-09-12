@@ -1,6 +1,6 @@
 <template>
-  <div>
-    <div class="card m-5 p-5 purple-bg">
+  <div class="d-flex align-items-center justify-content-center">
+    <div class="card m-5 p-5 w-50 purple-bg">
         <h1 class="text-center heading-text">Register :</h1>
 
       <form @submit.prevent="registerUser" class="p-3">
@@ -88,8 +88,6 @@
 
 <script>
 export default {
-  props: ["user"],
-
   data() {
     return {
       user: {
@@ -156,5 +154,17 @@ export default {
 
 .modal-content {
   border: 2px solid #ffd700;
+}
+
+@media screen and (max-width: 750px) {
+  .purple-bg {
+    width: 90% !important;
+  }
+}
+
+@media screen and (max-width: 450px) {
+  .purple-bg {
+    padding-inline: 10px !important;
+  }
 }
 </style>

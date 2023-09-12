@@ -24,7 +24,7 @@
           <span><strong>Password: </strong>{{ $store.state.user?.userPass }}</span>
         </div>
 
-        <div class="d-flex justify-content-between">
+        <div class="d-flex justify-content-between detail-btns">
           <update-user-comp class="btn edit-btn"/>
           <button type="submit" class="btn del-btn" @click="deleteUser(user.userID)">Delete Account</button>
         </div>
@@ -97,5 +97,26 @@ export default {
 .del-btn:hover {
     background: #0A192F;
     color: #FFD700;
+}
+
+@media screen and (max-width: 430px) {
+  .detail-btns {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .edit-btn, .del-btn {
+    margin: 5px;
+  }
+
+  .info-card {
+    font-size: 15px;
+  }
+
+  .user-card {
+    margin: 10px !important;
+    padding: 10px !important;
+    width: 95% !important;
+  }
 }
 </style>

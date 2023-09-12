@@ -27,7 +27,7 @@
 
     <h1 class="p-4 text-center heading-text">Meet the Team :</h1>
 
-    <div class="row d-flex align-items-center justify-content-center">
+    <div class="row d-flex align-items-center justify-content-center media-col">
       <div class="m-2 p-3 col-5 text-center dark-bg">
         <div class="text-center">
           <img src="https://i.postimg.cc/j2prBHCq/20230904-185601.jpg" alt="Taahirah-1" class="img-fluid mb-4" style="border: 2px solid #FFD700; border-radius: 50%; max-width: 75%;">
@@ -163,5 +163,29 @@ export default {};
   background: #010111;
   opacity: 97%;
   border-radius: 20px;
+}
+
+@media screen and (max-width: 600px) {
+  .media-col {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .dark-bg {
+    width: 90%;
+  }
+}
+
+@media screen and (max-width: 480px) {
+  .about-card, .gold-text {
+    font-size: 17px;
+  }
+}
+
+@media screen and (max-width: 400px) {
+  .about-card, .dark-bg, .gold-text {
+    font-size: 15px;
+    padding: 10px !important;
+  }
 }
 </style>

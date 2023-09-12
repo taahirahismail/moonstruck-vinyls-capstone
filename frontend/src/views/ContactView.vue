@@ -1,8 +1,8 @@
 <template>
-  <div class="row p-3 media">
+  <div class="row p-3">
     <h1 class="p-4 text-center heading-text">Contact Us !</h1>
 
-    <div class="my-3 d-flex justify-content-center">
+    <div class="my-3 d-flex justify-content-center media">
       <div class="m-2 p-2 col-7 card blue-bg light-border light-text media-2">
         <form action="https://formspree.io/f/xqkvbqaj" method="POST" class="p-3">
           <div class="mb-3">
@@ -56,7 +56,7 @@
         </form>
       </div>
   
-      <div class="m-2 p-2 col-4 card purple-bg light-border">
+      <div class="m-2 px-3 py-4 col-4 card purple-bg light-border media-2">
         <h3 class="text-center heading-text">Get in Touch with Our Customer Support :</h3>
 
         <span class="my-2 p-3 text-fix">
@@ -163,5 +163,56 @@ a {
 
 a:hover {
   color: #ffd700;
+}
+
+@media screen and (max-width: 800px) {
+  .purple-bg {
+    font-size: 12px;
+  }
+
+  .purple-bg>h3 {
+    font-size: 20px;
+  }
+}
+
+@media screen and (max-width: 650px) {
+  .media {
+    display: flex !important;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .media-2 {
+    width: 90%;
+  }
+
+  .purple-bg {
+    font-size: 20px;
+  }
+
+  .purple-bg>h3 {
+    font-size: 30px;
+  }
+}
+
+@media screen and (max-width: 500px) {
+  .purple-bg {
+    font-size: 15px;
+  }
+
+  .purple-bg>h3 {
+    font-size: 20px;
+  }
+}
+
+@media screen and (max-width: 350px) {
+  .purple-bg {
+    font-size: 12px;
+  }
+
+  .purple-bg>h3 {
+    font-size: 17px;
+  }
 }
 </style>
