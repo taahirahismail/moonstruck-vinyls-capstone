@@ -141,7 +141,7 @@ export default {
         userRole: "",
         emailAdd: "",
         userPass: "",
-        userImg: "",
+        userImg: "https://i.postimg.cc/t4K6NhxQ/default-profile.png",
       },
     };
   },

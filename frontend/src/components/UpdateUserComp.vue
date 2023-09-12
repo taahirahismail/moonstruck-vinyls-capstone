@@ -104,7 +104,7 @@ export default {
       };
     },
 
-    updateProduct(userID) {
+    updateUser(userID) {
       this.$store
         .dispatch("updateUser", {
           userID: userID,

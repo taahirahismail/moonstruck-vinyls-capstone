@@ -8,8 +8,8 @@ const url = "https://moonstruck-vinyls.onrender.com";
 
 export default createStore({
   state: {
-    users: null || JSON.parse(localStorage.getItem("user")),
-    user: null,
+    users: null,
+    user: null || JSON.parse(localStorage.getItem("user")),
     userAuth: null,
     userLoggedIn: false,
     token: null || localStorage.getItem("token"),
@@ -18,7 +18,6 @@ export default createStore({
     selectedProduct: null,
     orders: null,
     cart: null,
-    spinner: null,
     message: null,
     asc: true,
   },
@@ -249,8 +248,14 @@ export default createStore({
           context.commit("setToken", token);
           localStorage.setItem("setToken", token);
           localStorage.setItem("user", JSON.stringify(result));
-          cookies.set("setToken", token);
-          context.commit("setMessage", message);
+          
+          cookies.set("AuthorizedUser", {token, message, result});
+          sweet({
+            title: message,
+            text: `Welcome back ${result?.firstName} ${result?.lastName}`,
+            icon: "success",
+            timer: 5000
+          });
         } else {
           context.commit("setMessage", err);
         }
