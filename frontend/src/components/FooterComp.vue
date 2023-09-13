@@ -8,7 +8,7 @@
         <div class="text-center">
             <span>&copy; Moonstruck Vinyl's <br> Yet Another Taahirah Ismail Production <br> 2023</span>
         </div>
-        <div>
+        <div v-if="userIsAdmin">
             <router-link to="/admin" class="nav-link">Admin</router-link>
         </div>
     </div>
@@ -16,7 +16,11 @@
 
 <script>
 export default {
-    
+    computed: {
+        userIsAdmin() {
+            return this.$store.state.user.userRole === "Admin";
+        }
+    }
 }
 </script>
 
