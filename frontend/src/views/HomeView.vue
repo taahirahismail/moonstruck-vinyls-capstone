@@ -92,8 +92,6 @@ export default {
 }
 
 .main-bg {
-  background-color: #010111;
-  opacity: 95%;
   padding: 30px;
 }
 
@@ -137,8 +135,9 @@ export default {
   padding: 100px 0;
   background-image: url('https://i.postimg.cc/pL5fFnJf/moon-stars-2.png');
   background-repeat: no-repeat;
-  background-position: center;
+  background-position: fixed;
   background-size: cover;
+  background-attachment: fixed;
   background: -webkit-linear-gradient(top, #010111 0%, #f4f4f4 100%);
   background: -o-linear-gradient(top, #010111 0%, #f4f4f4 100%);
   background: -moz-linear-gradient(top, #010111 0%, #f4f4f4 100%);

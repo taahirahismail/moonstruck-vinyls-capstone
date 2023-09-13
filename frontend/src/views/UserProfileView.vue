@@ -26,6 +26,7 @@
 
         <div class="d-flex justify-content-between detail-btns">
           <update-user-comp class="btn edit-btn"/>
+          <button type="submit" class="btn logout-btn"><router-link to="/logout" class="logout-text">Log Out</router-link></button>
           <button type="submit" class="btn del-btn" @click="deleteUser(user.userID)">Delete Account</button>
         </div>
       </div>
@@ -88,13 +89,22 @@ export default {
     color: #f4f4f4;
 }
 
-.del-btn, .edit-btn {
+.logout-text {
+  text-decoration: none;
+  color: #0A192F;
+}
+
+.logout-text:hover {
+  color: #FFD700;
+}
+
+.del-btn, .edit-btn, .logout-btn {
     color: #0A192F;
     background: #FFD700;
     border: 2px solid #FFD700;
 }
 
-.del-btn:hover {
+.del-btn:hover, .edit-btn:hover, .logout-btn:hover {
     background: #0A192F;
     color: #FFD700;
 }

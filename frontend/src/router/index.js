@@ -46,10 +46,10 @@ const routes = [
     path: '/logout',
     name: 'logout',
     beforeEnter() {
-      router.push({name: 'login'})
-      localStorage.removeItem('setToken')
+      localStorage.removeItem('loginToken')
       localStorage.removeItem('user')
       window.location.reload()
+      router.push({name: 'login'})
     }
   },
   {
