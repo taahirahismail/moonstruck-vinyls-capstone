@@ -46,7 +46,7 @@ const routes = [
     path: '/logout',
     name: 'logout',
     beforeEnter() {
-      localStorage.removeItem('loginToken')
+      localStorage.removeItem('setToken')
       localStorage.removeItem('user')
       window.location.reload()
       router.push({name: 'login'})

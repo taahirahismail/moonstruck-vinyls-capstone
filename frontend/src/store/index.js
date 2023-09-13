@@ -317,20 +317,18 @@ export default createStore({
       }
     },
 
-    async fetchCart(context, userID) {
+    async fetchCart(context) {
       try {
-        userID = context.state.user.userID
-        await axios.get(`${url}/user/${userID}/carts`)
-        .then((res) => res.json())
-        .then((data) => {
-          console.log(data)
-          if (data != null) {
-            context.commit("setCart", data);
-          } else {
-            context.commit("setCart", null);
-          }
-        })
-      } catch (e) {
+        const userID = context.state.user.userID;
+        const response = await axios.get(`${url}/user/${userID}/carts`);
+        const data = response.data;
+    
+        if (data != null) {
+          context.commit("setCart", data);
+        } else {
+          context.commit("setCart", null);
+        }
+      } catch (error) {
         context.commit("setMessage", "An error occurred while fetching cart.");
       }
     },

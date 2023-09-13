@@ -34,7 +34,7 @@
 import SpinnerComp from "../components/SpinnerComp.vue";
 
 export default {
-  props: ["product"],
+  // props: ["product"],
 
   components: { SpinnerComp },
 
@@ -50,7 +50,7 @@ export default {
 
   methods: {
     async addToCart() {
-      this.$store.dispatch("addToCart", {userID: this.userID});
+      this.$store.dispatch("addToCart", {userID: this.userID, product: this.$store.state.selectedProduct});
     }
   }
 };

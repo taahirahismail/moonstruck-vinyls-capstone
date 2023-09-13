@@ -2,64 +2,50 @@
   <div class="media">
     <h1 class="p-4 text-center heading-text">Checkout !</h1>
 
-    <div
-      v-for="product in cart"
-      :key="product.orderID"
-      class="card mx-auto my-3 p-5 w-75 text-center prod-card"
-    >
-      <div>
-        <img :src="product.prodImg" :alt="product.albumName" />
-
+    <div class="card m-3 p-2 text-center blue-bg">
+      <div
+        v-for="product in cart"
+        :key="product.orderID"
+        class="m-3 p-2 d-flex align-items-center justify-content-between dark-bg"
+      >
         <div>
+          <img
+            :src="product.prodImg"
+            :alt="product.albumName"
+            class="img-fluid"
+            style="width: 50%"
+          />
+        </div>
+
+        <div class="p-3">
           <h4>{{ product.albumName }}</h4>
           <cite>{{ product.albumArtist }}</cite>
         </div>
 
-        <span>{{ product.price }}</span>
+        <span class="p-3">{{ product.price }}</span>
 
         <button
           type="submit"
           @click="removeFromCart(product.userID, product.prodID)"
+          class="rem-btn"
         >
           X
         </button>
       </div>
     </div>
 
-    <div class="m-3 p-3 d-flex align-items-center justify-content-between gold-text">
-      Total: R (how do you add the total again?)
+    <div
+      class="m-3 p-3 d-flex align-items-center justify-content-between gold-text"
+    >
+      Total: R {{ total }}
 
-      <button type="submit" @click="clearCart(product.userID)" class="p-2 pay-btn">
+      <button
+        type="submit"
+        @click="clearCart(this.userID)"
+        class="p-2 pay-btn"
+      >
         Proceed With Payment
       </button>
-    </div>
-
-    <div class="card m-3 p-2 text-center blue-bg">
-      <div class="m-3 p-2 d-flex align-items-center justify-content-between dark-bg">
-
-        <div>
-          <img
-            src="https://i.postimg.cc/TwF4vWGC/prop-record.png"
-            alt="prop-record"
-            class="img-fluid"
-            style="width: 50%;"
-          />
-        </div>
-
-        <div class="p-3">
-          <h4><strong>Album Name goes here</strong></h4>
-          <br />
-          <cite>Album Artist goes here</cite>
-        </div>
-
-        <div class="p-3">
-          Price goes here
-        </div>
-
-        <div class="p-3">
-          <button class="btn close-btn">X</button>
-        </div>
-      </div>
     </div>
   </div>
 </template>
@@ -72,10 +58,33 @@ export default {
     cart() {
       return this.$store.state.cart;
     },
+
+    // total() {
+    //   return this.cart.reduce((acc, product) => acc + product.price, 0);
+    // }
   },
 
   mounted() {
     this.$store.dispatch("fetchCart", this.userID);
+  },
+
+  methods: {
+    clearCart(userID) {
+      userID = this.userID;
+      this.$store.dispatch("clearCart", userID);
+      setTimeout(() => {
+        location.reload();
+      }, 500);
+    },
+
+    removeFromCart(prodID) {
+      if (confirm("Are you sure you want to remove this item from the cart?")) {
+        this.$store.dispatch("removeFromCart", prodID);
+        setTimeout(() => {
+          location.reload();
+        }, 500);
+      }
+    },
   },
 };
 </script>
@@ -97,18 +106,28 @@ export default {
 
 .dark-bg {
   background: #010111;
-  border: 2px solid #f4f4f4;
+  /* border: 2px solid #f4f4f4; */
   color: #f4f4f4;
+}
+
+.rem-btn {
+  background: #010111;
+  color: #f4f4f4;
+  border: none;
+}
+
+.rem-btn:hover {
+  color: #ffd700;
 }
 
 .pay-btn {
   background: #010111;
-  color: #FFD700;
+  color: #ffd700;
   border: 3px solid #010111;
   border-radius: 5px;
 }
 
 .pay-btn:hover {
-  border: 3px solid #FFD700;
+  border: 3px solid #ffd700;
 }
 </style>
