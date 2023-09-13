@@ -319,10 +319,7 @@ export default createStore({
 
     async fetchCart(context, userID) {
       try {
-        // const { res } = await axios.get(`${url}/user/${userID}/carts`);
-        // context.commit("setCart", res.data);
-
-        let userID = context.state.user.userID
+        userID = context.state.user.userID
         await axios.get(`${url}/user/${userID}/carts`)
         .then((res) => res.json())
         .then((data) => {
@@ -338,19 +335,14 @@ export default createStore({
       }
     },
 
-    async addToCart(context, { payload }) {
+    async addToCart(context, userID) {
       try {
-        let userID = localStorage.getItem("userID");
-        const { res, message } = await axios.post(
-          `${url}/user/${userID}/cart`,
-          payload
-        );
-
-        if (res) {
-          context.commit("setCart", res.data);
-        } else {
-          context.commit("setMessage", message);
-        }
+        userID = context.state.user.userID;
+        await axios.post(`${url}/user/${userID}/cart`)
+        .then((res) => res.json())
+        .then((data) => {
+          context.dispatch("fetchCart", data);
+        });
       } catch (e) {
         context.commit("setMessage", "An error occurred while adding to cart.");
       }

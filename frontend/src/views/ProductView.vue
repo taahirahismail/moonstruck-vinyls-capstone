@@ -20,7 +20,7 @@
 
       <div class="d-flex justify-content-between mt-5">
         <h3 class="gold-text">R{{ product.price }}</h3>
-        <button class="btn add-cart-btn" @click="addToCart(product)">Add to Cart</button>
+        <button class="btn add-cart-btn" @click="addToCart(product.prodID)">Add to Cart</button>
       </div>
     </div>
 
@@ -49,15 +49,8 @@ export default {
   },
 
   methods: {
-    async addToCart(product) {
-      const userID = localStorage.getItem('userID');
-      this.$store.dispatch('addToCart', {
-        userID: userID,
-        payload: {
-          userID: userID,
-          productID: product.productID
-        }
-      })
+    async addToCart() {
+      this.$store.dispatch("addToCart", {userID: this.userID});
     }
   }
 };
