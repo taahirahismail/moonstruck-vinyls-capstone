@@ -191,6 +191,12 @@ export default {
         .catch((err) => {
           console.error("Error updating: ", err);
         });
+
+      this.$swal({
+        title: "Profile Updated!",
+        icon: "success",
+        timer: 5000,
+      });
     },
 
     deleteUser(userID) {
@@ -199,6 +205,12 @@ export default {
         setTimeout(() => {
           location.reload();
         }, 500);
+
+        this.$swal({
+          title: "Profile Deleted!",
+          icon: "success",
+          timer: 5000,
+        });
       }
     },
   },
@@ -250,7 +262,6 @@ export default {
   background: #0a192f;
   color: #ffd700;
 }
-
 
 /* edit user modal styling */
 .blue-bg {

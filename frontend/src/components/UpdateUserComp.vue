@@ -123,7 +123,13 @@ export default {
     },
 
     updateUser() {
-      this.$store.dispatch('updateUser', this.payload);
+      this.$store.dispatch("updateUser", this.payload);
+
+      this.$swal({
+        title: "User Details Updated!",
+        icon: "success",
+        timer: 5000,
+      });
     },
   },
 };

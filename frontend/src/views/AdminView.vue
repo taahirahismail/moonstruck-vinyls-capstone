@@ -3,7 +3,7 @@
     <h1 class="text-center p-3 heading-text">Admin !</h1>
 
     <div class="my-3 prod-table">
-      <div class="mx-auto d-flex justify-content-between" style="width: 90%;">
+      <div class="mx-auto d-flex justify-content-between" style="width: 90%">
         <h3 class="text-center p-3">Products</h3>
         <add-product-comp />
       </div>
@@ -23,7 +23,11 @@
             </tr>
           </thead>
 
-          <tbody v-for="product in products" :key="product.prodID" :product="product">
+          <tbody
+            v-for="product in products"
+            :key="product.prodID"
+            :product="product"
+          >
             <tr v-if="products">
               <td>{{ product.prodID }}</td>
               <td>{{ product.albumName }}</td>
@@ -62,10 +66,10 @@
     </div>
 
     <div class="my-3 user-table">
-      <div class="mx-auto d-flex justify-content-between" style="width: 90%;">
+      <div class="mx-auto d-flex justify-content-between" style="width: 90%">
         <h3 class="text-center p-3">Users</h3>
 
-        <add-user-comp/>
+        <add-user-comp />
       </div>
 
       <div class="d-flex justify-content-center media-table">
@@ -82,7 +86,7 @@
             </tr>
           </thead>
 
-          <tbody v-for="user in users" :key="user.userID" :user="user" >
+          <tbody v-for="user in users" :key="user.userID" :user="user">
             <tr v-if="users">
               <td>{{ user.userID }}</td>
               <td>{{ user.firstName }}</td>
@@ -98,9 +102,12 @@
                 />
               </td>
               <td>
-                <update-user-comp :user="user"/>
+                <update-user-comp :user="user" />
 
-                <button class="btn del-btn media-font-2" @click="deleteUser(user.userID)">
+                <button
+                  class="btn del-btn media-font-2"
+                  @click="deleteUser(user.userID)"
+                >
                   Delete
                 </button>
               </td>
@@ -121,10 +128,10 @@ import SpinnerComp from "../components/SpinnerComp.vue";
 import AddProductComp from "@/components/AddProductComp.vue";
 import UpdateProductComp from "@/components/UpdateProductComp.vue";
 import AddUserComp from "@/components/AddUserComp.vue";
-import UpdateUserComp from '../components/UpdateUserComp.vue';
+import UpdateUserComp from "../components/UpdateUserComp.vue";
 
 export default {
-  props: ['product', 'user'],
+  props: ["product", "user"],
 
   components: {
     SpinnerComp,
@@ -146,7 +153,7 @@ export default {
     },
     user() {
       return this.$store.state.user;
-    }
+    },
   },
 
   mounted() {
@@ -161,6 +168,12 @@ export default {
         setTimeout(() => {
           location.reload();
         }, 500);
+
+        this.$swal({
+          title: "Product Deleted!",
+          icon: "success",
+          timer: 5000,
+        });
       }
     },
 
@@ -170,8 +183,14 @@ export default {
         setTimeout(() => {
           location.reload();
         }, 500);
+
+        this.$swal({
+          title: "User Deleted!",
+          icon: "success",
+          timer: 5000,
+        });
       }
-    }
+    },
   },
 };
 </script>
@@ -224,13 +243,15 @@ table {
 }
 
 @media screen and (max-width: 850px) {
-  .media-font, .media-hide {
+  .media-font,
+  .media-hide {
     display: none;
   }
 }
 
 @media screen and (max-width: 850px) {
-  .media-font, .media-hide {
+  .media-font,
+  .media-hide {
     display: none;
   }
 }

@@ -170,7 +170,13 @@ export default {
     },
 
     updateProduct() {
-      this.$store.dispatch("updateProduct", this.payload)
+      this.$store.dispatch("updateProduct", this.payload);
+
+      this.$swal({
+        title: "Product Details Updated!",
+        icon: "success",
+        timer: 5000,
+      });
     },
   },
 };
