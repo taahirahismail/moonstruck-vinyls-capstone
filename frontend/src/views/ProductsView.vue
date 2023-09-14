@@ -42,7 +42,7 @@
 
             <div class="p-3 d-flex align-items-center justify-content-between">
               R {{ product.price }}
-              <button v-if="userLoggedIn"
+              <button
                 @click="viewProduct(product.prodID)"
                 class="btn details-btn"
               >

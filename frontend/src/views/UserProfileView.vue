@@ -8,7 +8,7 @@
           :src="$store.state.user?.userImg"
           :alt="$store.state.user?.firstName"
           class="img-fluid mb-5"
-          style="max-width: 60%; border-radius: 50%;"
+          style="max-width: 60%; border-radius: 50%"
         />
 
         <h2 class="gold-text">
@@ -19,15 +19,117 @@
 
       <div>
         <div class="card mb-5 p-3 info-card">
-          <span><strong>User ID: </strong>{{ $store.state.user?.userID }}</span> <br> <br>
-          <span><strong>Email: </strong>{{ $store.state.user?.emailAdd }}</span> <br> <br>
-          <span><strong>Password: </strong>{{ $store.state.user?.userPass }}</span>
+          <span><strong>User ID: </strong>{{ $store.state.user?.userID }}</span>
+          <br />
+          <br />
+          <span><strong>Email: </strong>{{ $store.state.user?.emailAdd }}</span>
+          <br />
+          <br />
+          <span
+            ><strong>Password: </strong>{{ $store.state.user?.userPass }}</span
+          >
         </div>
 
         <div class="d-flex justify-content-between detail-btns">
-          <update-user-comp class="btn edit-btn"/>
-          <button type="submit" class="btn logout-btn"><router-link to="/logout" class="logout-text">Log Out</router-link></button>
-          <button type="submit" class="btn del-btn" @click="deleteUser(user.userID)">Delete Account</button>
+          <button
+            type="button"
+            class="btn edit-users-btn"
+            @click="openEditModal(user.userID)"
+            data-bs-toggle="modal"
+            :data-bs-target="'#edit-user-modal' + user.userID"
+          >
+            Edit
+          </button>
+
+          <div
+            class="modal"
+            :id="'edit-user-modal' + user.userID"
+            aria-hidden="true"
+          >
+            <div class="modal-dialog">
+              <div class="modal-content blue-bg">
+                <div class="modal-header">
+                  <h1 class="modal-title text-center heading-text">
+                    Update User:
+                  </h1>
+                  <button
+                    type="button"
+                    class="btn-close"
+                    data-bs-dismiss="modal"
+                    aria-label="close"
+                  ></button>
+                </div>
+
+                <div class="modal-body">
+                  <div class="mb-3">
+                    <label class="form-label">First Name :</label>
+                    <input
+                      type="text"
+                      class="form-control"
+                      v-model="editUser.firstName"
+                    />
+                  </div>
+
+                  <div class="mb-3">
+                    <label class="form-label">Last Name :</label>
+                    <input
+                      type="text"
+                      class="form-control"
+                      v-model="editUser.lastName"
+                    />
+                  </div>
+
+                  <div class="mb-3">
+                    <label class="form-label">Email :</label>
+                    <input
+                      type="text"
+                      class="form-control"
+                      v-model="editUser.emailAdd"
+                    />
+                  </div>
+
+                  <div class="mb-3">
+                    <label class="form-label">Password :</label>
+                    <input
+                      type="text"
+                      class="form-control"
+                      v-model="editUser.userPass"
+                    />
+                  </div>
+
+                  <div class="mb-3">
+                    <label class="form-label">Profile Image :</label>
+                    <input
+                      type="text"
+                      class="form-control"
+                      v-model="editUser.userImg"
+                    />
+                  </div>
+                </div>
+
+                <div class="modal-footer">
+                  <button
+                    type="button"
+                    class="btn edit-user-btn"
+                    @click="updateUser(user.userID)"
+                  >
+                    Update
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <button type="submit" class="btn logout-btn">
+            <router-link to="/logout" class="logout-text">Log Out</router-link>
+          </button>
+          <button
+            type="submit"
+            class="btn del-btn"
+            @click="deleteUser(user.userID)"
+          >
+            Delete Account
+          </button>
         </div>
       </div>
     </div>
@@ -35,17 +137,33 @@
 </template>
 
 <script>
-import UpdateUserComp from "../components/UpdateUserComp.vue";
-
 export default {
   props: ["user"],
 
-  components: {
-    UpdateUserComp,
+  data() {
+    return {
+      editUser: {
+        ...this.user,
+      },
+
+      editUserID: null,
+
+      user: {
+        firstName: "",
+        lastName: "",
+        emailAdd: "",
+        userPass: "",
+        userImg: "",
+      },
+    };
   },
 
   computed: {
     user() {
+      return this.$store.state.user;
+    },
+
+    currentUser() {
       return this.$store.state.user;
     },
 
@@ -55,6 +173,30 @@ export default {
   },
 
   methods: {
+    openEditModal(userID) {
+      this.editUserID = userID;
+      this.editUser = {
+        ...this.$store.state.users.find((user) => user.userID === userID),
+      };
+    },
+
+    updateUser(userID) {
+      this.$store
+        .dispatch("updateUser", {
+          userID: userID,
+          data: { ...this.editUser },
+        })
+        .then(() => {
+          console.log("User updated!");
+          setTimeout(() => {
+            window.location.reload();
+          }, 500);
+        })
+        .catch((err) => {
+          console.error("Error updating: ", err);
+        });
+    },
+
     deleteUser(userID) {
       if (confirm("Are you sure you want to delete this user?")) {
         this.$store.dispatch("deleteUser", userID);
@@ -63,7 +205,7 @@ export default {
         }, 500);
       }
     },
-  }
+  },
 };
 </script>
 
@@ -74,39 +216,43 @@ export default {
 
 .gold-text {
   color: #ffd700;
-  font-family: 'Montserrat Alternates', sans-serif;
+  font-family: "Montserrat Alternates", sans-serif;
 }
 
 .user-card {
-    background: #0A192F;
-    border: 3px solid #f4f4f4;
-    color: #f4f4f4;
+  background: #0a192f;
+  border: 3px solid #f4f4f4;
+  color: #f4f4f4;
 }
 
 .info-card {
-    background: #010111;
-    border: 3px solid #f4f4f4;
-    color: #f4f4f4;
+  background: #010111;
+  border: 3px solid #f4f4f4;
+  color: #f4f4f4;
 }
 
 .logout-text {
   text-decoration: none;
-  color: #0A192F;
+  color: #0a192f;
 }
 
 .logout-text:hover {
-  color: #FFD700;
+  color: #ffd700;
 }
 
-.del-btn, .edit-btn, .logout-btn {
-    color: #0A192F;
-    background: #FFD700;
-    border: 2px solid #FFD700;
+.del-btn,
+.edit-btn,
+.logout-btn {
+  color: #0a192f;
+  background: #ffd700;
+  border: 2px solid #ffd700;
 }
 
-.del-btn:hover, .edit-btn:hover, .logout-btn:hover {
-    background: #0A192F;
-    color: #FFD700;
+.del-btn:hover,
+.edit-btn:hover,
+.logout-btn:hover {
+  background: #0a192f;
+  color: #ffd700;
 }
 
 @media screen and (max-width: 430px) {
@@ -115,7 +261,8 @@ export default {
     flex-direction: column;
   }
 
-  .edit-btn, .del-btn {
+  .edit-btn,
+  .del-btn {
     margin: 5px;
   }
 

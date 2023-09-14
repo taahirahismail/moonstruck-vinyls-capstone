@@ -8,7 +8,7 @@
         <div class="text-center">
             <span>&copy; Moonstruck Vinyl's <br> Yet Another Taahirah Ismail Production <br> 2023</span>
         </div>
-        <div v-if="userIsAdmin">
+        <div :class="{ 'hidden': !userIsAdmin }">
             <router-link to="/admin" class="nav-link">Admin</router-link>
         </div>
     </div>

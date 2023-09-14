@@ -61,10 +61,6 @@ export default createStore({
       state.cart = cart;
     },
 
-    setSpinner(state, spinner) {
-      state.spinner = spinner;
-    },
-
     setMessage(state, message) {
       state.message = message;
     },
@@ -178,7 +174,6 @@ export default createStore({
 
         if (message) {
           context.commit("setProduct", message);
-          context.commit("setSpinner", false);
         } else {
           context.commit("setMessage", "An error occurred.");
         }
@@ -248,6 +243,7 @@ export default createStore({
           context.commit("setToken", token);
           localStorage.setItem("setToken", token);
           localStorage.setItem("user", JSON.stringify(result));
+          context.commit("setUserLoggedIn", true);
           
           cookies.set("AuthorizedUser", {token, message, result});
           sweet({

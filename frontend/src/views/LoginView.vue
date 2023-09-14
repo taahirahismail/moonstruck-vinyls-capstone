@@ -56,7 +56,7 @@ export default {
     methods: {
         login() {
             this.$store.dispatch('login', this.payload);
-            this.$router.push("/profile");
+            this.$router.push("/");
         }
     },
 
