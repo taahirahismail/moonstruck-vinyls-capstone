@@ -6,7 +6,7 @@
             </router-link>
         </div>
         <div class="text-center">
-            <span>&copy; Moonstruck Vinyl's <br> Yet Another Taahirah Ismail Production <br> 2023</span>
+            <span>&copy; Moonstruck Vinyl's <br> Yet Another Taahirah Ismail Production <br> {{new Date().getFullYear()}}</span>
         </div>
         <div :class="{ 'hidden': !userIsAdmin }">
             <router-link to="/admin" class="nav-link">Admin</router-link>
