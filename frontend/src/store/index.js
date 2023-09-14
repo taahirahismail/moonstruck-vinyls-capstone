@@ -246,13 +246,6 @@ export default createStore({
           // context.commit("setUserLoggedIn", true);
           
           cookies.set("AuthorizedUser", {token, message, result});
-          
-          new sweet({
-            title: message,
-            text: `Welcome back ${result?.firstName} ${result?.lastName}`,
-            icon: "success",
-            timer: 5000
-          });
         } else {
           context.commit("setMessage", err);
         }

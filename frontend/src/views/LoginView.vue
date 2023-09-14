@@ -56,6 +56,12 @@ export default {
     methods: {
         login() {
             this.$store.dispatch('login', this.payload);
+            this.$swal({
+              title: "Login Successful",
+              text: `Welcome back to Moonstruck Vinyl's!`,
+              icon: "success",
+              timer: 5000
+            });
             this.$router.push("/");
         }
     },

@@ -57,6 +57,24 @@
         </div>
       </div>
     </div>
+
+    <hr>
+
+    <div class="row d-flex justify-content-center star-bg">
+      <div>
+        <h2 class="m-3 p-3 text-center gold-text">Allow Moonstruck Vinyl's to take you on a journey of sound...</h2>
+      </div>
+
+      <div class="m-3 p-3 col-5 text-center">
+        <h3 class="pb-3 heading-text">Learn About Us: </h3>
+        <button class="p-2 btn blue-btn"><router-link to="/about" class="btn-text">Here !</router-link></button>
+      </div>
+
+      <div class="m-3 p-3 col-5 text-center">
+        <h3 class="pb-3 heading-text">Or Get in Contact: </h3>
+        <button class="p-2 btn blue-btn"><router-link to="/about" class="btn-text">Yay !</router-link></button>
+      </div>
+    </div>
   </div>
 </template>
 
@@ -93,6 +111,14 @@ export default {
 
 .main-bg {
   padding: 30px;
+}
+
+.star-bg {
+  background-image: url('https://i.postimg.cc/tC6TPGSj/other-stars.png');
+  background-repeat: no-repeat;
+  background-position: fixed;
+  background-size: cover;
+  background-attachment: fixed;
 }
 
 .btn-text {
@@ -133,7 +159,7 @@ export default {
 
 #clouds {
   padding: 100px 0;
-  background-image: url('https://i.postimg.cc/pL5fFnJf/moon-stars-2.png');
+  background-image: url('https://i.postimg.cc/tC6TPGSj/other-stars.png');
   background-repeat: no-repeat;
   background-position: fixed;
   background-size: cover;
