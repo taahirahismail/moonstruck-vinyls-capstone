@@ -1,6 +1,6 @@
 import { createStore } from "vuex";
 import axios from "axios";
-import sweet from 'sweet-alert'
+import sweet from 'vue-sweetalert2'
 // import authUser from '@/services/AuthenticateUser'
 import { useCookies } from "vue3-cookies";
 const { cookies } = useCookies();
@@ -243,7 +243,7 @@ export default createStore({
           context.commit("setToken", token);
           localStorage.setItem("setToken", token);
           localStorage.setItem("user", JSON.stringify(result));
-          context.commit("setUserLoggedIn", true);
+          // context.commit("setUserLoggedIn", true);
           
           cookies.set("AuthorizedUser", {token, message, result});
           sweet({

@@ -30,6 +30,7 @@
           >
         </div>
 
+        <!-- edit user modal -->
         <div class="d-flex justify-content-between detail-btns">
           <button
             type="button"

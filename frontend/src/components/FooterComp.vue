@@ -8,7 +8,7 @@
         <div class="text-center">
             <span>&copy; Moonstruck Vinyl's <br> Yet Another Taahirah Ismail Production <br> {{new Date().getFullYear()}}</span>
         </div>
-        <div :class="{ 'hidden': !userIsAdmin }">
+        <div>
             <router-link to="/admin" class="nav-link">Admin</router-link>
         </div>
     </div>
@@ -16,11 +16,7 @@
 
 <script>
 export default {
-    computed: {
-        userIsAdmin() {
-            return this.$store.state.user.userRole === "Admin";
-        }
-    }
+
 }
 </script>
 
