@@ -41,7 +41,7 @@
               </td>
               <td class="media-font">{{ product.albumDesc }}</td>
               <td>
-                <update-product-comp />
+                <update-product-comp :product="product" />
 
                 <button
                   type="submit"
@@ -89,7 +89,7 @@
               <td>{{ user.lastName }}</td>
               <td>{{ user.userRole }}</td>
               <td class="media-font-2">{{ user.emailAdd }}</td>
-              <td class="user-img media-hide-2">
+              <td class="text-center user-img media-hide-2">
                 <img
                   :src="user.userImg"
                   :alt="user.firstName"
@@ -98,7 +98,7 @@
                 />
               </td>
               <td>
-                <update-user-comp/>
+                <update-user-comp :user="user"/>
 
                 <button class="btn del-btn media-font-2" @click="deleteUser(user.userID)">
                   Delete
@@ -164,7 +164,7 @@ import AddUserComp from "@/components/AddUserComp.vue";
 import UpdateUserComp from '../components/UpdateUserComp.vue';
 
 export default {
-  props: ['product'],
+  props: ['product', 'user'],
 
   components: {
     SpinnerComp,
@@ -279,6 +279,7 @@ table {
 
 .user-img {
   max-width: 75px;
+  border-radius: 50%;
 }
 
 @media screen and (max-width: 1100px) {

@@ -31,11 +31,11 @@
         </div>
 
         <div class="modal-body">
-          <!-- <div>
+          <div class="mb-3">
             <label for="productID" class="form-label">Product ID:</label>
 
-            <input type="text" class="input-bg" v-model="editProduct.prodID" id="productID"/>
-          </div> -->
+            <input type="text" class="form-control input-bg" v-model="editProduct.prodID" id="productID"/>
+          </div>
 
           <form @submit.prevent="updateProduct(product.prodID)">          
             <div class="mb-3">
@@ -138,11 +138,11 @@ export default {
     };
   },
 
-  // computed: {
-  //   currentProduct() {
-  //     return this.$store.state.product;
-  //   },
-  // },
+  computed: {
+    currentProduct() {
+      return this.$store.state.product;
+    },
+  },
 
   methods: {
     openEditModal(prodID) {

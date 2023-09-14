@@ -49,7 +49,7 @@
             <div class="modal-dialog">
               <div class="modal-content blue-bg">
                 <div class="modal-header">
-                  <h1 class="modal-title text-center heading-text">
+                  <h1 class="modal-title text-center modal-heading-text">
                     Update User:
                   </h1>
                   <button
@@ -163,10 +163,6 @@ export default {
       return this.$store.state.user;
     },
 
-    currentUser() {
-      return this.$store.state.user;
-    },
-
     mounted() {
       return this.$store.dispatch("fetchUser");
     },
@@ -241,7 +237,7 @@ export default {
 }
 
 .del-btn,
-.edit-btn,
+.edit-users-btn,
 .logout-btn {
   color: #0a192f;
   background: #ffd700;
@@ -249,10 +245,35 @@ export default {
 }
 
 .del-btn:hover,
-.edit-btn:hover,
+.edit-users-btn:hover,
 .logout-btn:hover {
   background: #0a192f;
   color: #ffd700;
+}
+
+
+/* edit user modal styling */
+.blue-bg {
+  background: #0a192f;
+}
+
+.modal-heading-text {
+  color: #ffd700;
+  font-family: "Montserrat Alternates", sans-serif;
+}
+
+.edit-user-btn {
+  background: #0a192f;
+  color: #ffd700;
+  border: 3px solid #0a192f;
+}
+
+.edit-user-btn:hover {
+  border: 3px solid #ffd700;
+}
+
+.modal-content {
+  border: 2px solid #ffd700;
 }
 
 @media screen and (max-width: 430px) {
