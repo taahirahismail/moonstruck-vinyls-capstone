@@ -113,46 +113,6 @@
         </table>
       </div>
     </div>
-
-    <div class="my-3 order-table">
-      <div class="mx-auto d-flex justify-content-between" style="width: 90%;">
-        <h3 class="text-center p-3">Orders</h3>
-      </div>
-
-      <div class="d-flex justify-content-center media-table">
-        <table>
-          <thead>
-            <tr>
-              <th>Order ID</th>
-              <th>User ID</th>
-              <th>Product ID</th>
-              <th>Quantity</th>
-              <th>Action</th>
-            </tr>
-          </thead>
-
-          <tbody v-for="cart in orders" :key="cart.orderID">
-            <tr v-if="orders">
-              <td>{{ cart.orderID }}</td>
-              <td>{{ cart.userID }}</td>
-              <td>{{ cart.prodID }}</td>
-              <td>{{ cart.quantity }}</td>
-              <td>
-                <!-- insert update orders comp -->
-
-                <button class="btn del-btn media-font-2" @click="clearCart(cart.userID)">
-                  Delete
-                </button>
-              </td>
-            </tr>
-
-            <tr v-else>
-              <spinner-comp />
-            </tr>
-          </tbody>
-        </table>
-      </div>
-    </div>
   </div>
 </template>
 
@@ -186,19 +146,12 @@ export default {
     },
     user() {
       return this.$store.state.user;
-    },
-    orders() {
-      return this.$store.state.orders;
-    },
-    cart() {
-      return this.store.state.cart;
     }
   },
 
   mounted() {
     this.$store.dispatch("fetchProducts");
     this.$store.dispatch("fetchUsers");
-    this.$store.dispatch("fetchOrders");
   },
 
   methods: {
@@ -214,24 +167,6 @@ export default {
     deleteUser(userID) {
       if (confirm("Are you sure you want to delete this user?")) {
         this.$store.dispatch("deleteUser", userID);
-        setTimeout(() => {
-          location.reload();
-        }, 500);
-      }
-    },
-
-    clearCart(userID) {
-      if (confirm("Are you sure you want to clear the orders of this user?")) {
-        this.$store.dispatch("clearCart", userID);
-        setTimeout(() => {
-          location.reload();
-        }, 500);
-      }
-    },
-
-    removeFromCart(prodID) {
-      if (confirm("Are you sure you want to remove this item from the cart?")) {
-        this.$store.dispatch("removeFromCart", prodID);
         setTimeout(() => {
           location.reload();
         }, 500);

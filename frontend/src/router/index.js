@@ -46,10 +46,11 @@ const routes = [
     path: '/logout',
     name: 'logout',
     beforeEnter() {
-      localStorage.removeItem('setToken')
-      localStorage.removeItem('user')
-      window.location.reload()
-      router.push({name: 'login'})
+      if (confirm("Are you sure you want to log out of your profile?")) {
+        localStorage.removeItem('setToken');
+        localStorage.removeItem('user');
+        router.push({name: 'login'});
+      }
     }
   },
   {

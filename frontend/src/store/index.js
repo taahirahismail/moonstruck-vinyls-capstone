@@ -246,7 +246,8 @@ export default createStore({
           // context.commit("setUserLoggedIn", true);
           
           cookies.set("AuthorizedUser", {token, message, result});
-          sweet({
+          
+          new sweet({
             title: message,
             text: `Welcome back ${result?.firstName} ${result?.lastName}`,
             icon: "success",
