@@ -263,7 +263,9 @@ export default createStore({
         const { message, err } = res.data;
 
         if (message) {
-          context.commit("setUser", message);
+          context.commit("setMessage", message);
+          context.commit("setUser", payload);
+          context.dispatch("getUsers");
         } else {
           context.commit("setMessage", err);
         }

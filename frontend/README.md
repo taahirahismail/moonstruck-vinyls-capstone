@@ -1,4 +1,4 @@
-# frontend
+# moonstruck-test
 
 ## Project setup
 ```

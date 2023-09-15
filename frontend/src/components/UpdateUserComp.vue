@@ -48,6 +48,15 @@
               </div>
 
               <div class="mb-3">
+                <label class="form-label">User Role :</label>
+                <input
+                  type="text"
+                  class="form-control"
+                  v-model="payload.userRole"
+                />
+              </div>
+
+              <div class="mb-3">
                 <label class="form-label">Email :</label>
                 <input
                   type="text"
@@ -101,6 +110,7 @@ export default {
         userID: this.user?.userID,
         firstName: this.user?.firstName,
         lastName: this.user?.lastName,
+        userRole: this.user?.userRole,
         emailAdd: this.user?.emailAdd,
         userPass: this.user?.userPass,
         userImg: this.user?.userImg,
@@ -123,10 +133,13 @@ export default {
     },
 
     updateUser() {
+      localStorage.removeItem('user');
+
       this.$store.dispatch("updateUser", this.payload);
+      localStorage.setItem('user', this.payload);
 
       this.$swal({
-        title: "User Details Updated!",
+        title: "Profile Updated!",
         icon: "success",
         timer: 5000,
       });

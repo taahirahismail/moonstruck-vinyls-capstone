@@ -202,8 +202,11 @@ export default {
     deleteUser(userID) {
       if (confirm("Are you sure you want to delete this user?")) {
         this.$store.dispatch("deleteUser", userID);
+        localStorage.removeItem('setToken');
+        localStorage.removeItem('user');
+
         setTimeout(() => {
-          location.reload();
+          router.push({name: 'register'});
         }, 500);
 
         this.$swal({
