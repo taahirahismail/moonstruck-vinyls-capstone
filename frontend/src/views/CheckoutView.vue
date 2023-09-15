@@ -71,16 +71,12 @@ export default {
   methods: {
     clearCart(userID) {
       userID = this.userID;
-      this.$store.dispatch("clearCart", userID);
-      setTimeout(() => {
-        location.reload();
-      }, 500);
+      this.$store.dispatch("clearCart", userID);;
 
       this.$swal({
         title: "Purchase Successful!",
         text: "Your order will arrive in 5-10 business days. Thank you for shopping with Moonstruck Vinyl's !",
-        icon: "success",
-        timer: 5000,
+        icon: "success"
       });
     },
 
