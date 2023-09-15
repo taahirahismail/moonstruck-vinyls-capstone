@@ -137,23 +137,15 @@ export default {
 .sub-btn,
 .clr-btn {
   background: #ffd700;
-  color: #010111;
-  border: 3px solid #010111;
-  box-shadow: 0 0 0 0 transparent;
-  -webkit-transition: all 0.2s ease-in;
-  -moz-transition: all 0.2s ease-in;
-  transition: all 0.2s ease-in;
+  color: #0a192f;
+  border: 3px solid #0a192f;
 }
 
 .sub-btn:hover,
 .clr-btn:hover {
-  /* background: #0a192f;
+  background: #0a192f;
   color: #ffd700;
-  border: 3px solid #ffd700; */
-  box-shadow: 0 0 15px 2.5px #ffd700;
-  -webkit-transition: all 0.2s ease-out;
-  -moz-transition: all 0.2s ease-out;
-  transition: all 0.2s ease-out;
+  border: 3px solid #ffd700;
 }
 
 a {

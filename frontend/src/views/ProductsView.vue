@@ -127,6 +127,18 @@ export default {
   border: 3px solid #f4f4f4;
   color: #f4f4f4;
   min-height: 98%;
+  box-shadow: 0 0 0 0 transparent;
+  -webkit-transition: all 0.2s ease-in;
+  -moz-transition: all 0.2s ease-in;
+  transition: all 0.2s ease-in;
+}
+
+#prod-card:hover {
+  border: 3px solid #ffd700;
+  box-shadow: 0 0 10px 1px #ffd700;
+  -webkit-transition: all 0.2s ease-out;
+  -moz-transition: all 0.2s ease-out;
+  transition: all 0.2s ease-out;
 }
 
 .heading-text {
@@ -170,18 +182,12 @@ export default {
 
 .details-btn {
   background: #0a192f;
+  border: 2px solid #0a192f;
   color: #ffd700;
-  box-shadow: 0 0 0 0 transparent;
-  -webkit-transition: all 0.2s ease-in;
-  -moz-transition: all 0.2s ease-in;
-  transition: all 0.2s ease-in;
 }
 
 .details-btn:hover {
-  box-shadow: 0 0 10px 1px #ffd700;
-  -webkit-transition: all 0.2s ease-out;
-  -moz-transition: all 0.2s ease-out;
-  transition: all 0.2s ease-out;
+  border: 2px solid #ffd700;
 }
 
 .straighten {

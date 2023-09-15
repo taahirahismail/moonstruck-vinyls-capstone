@@ -103,6 +103,12 @@ export default {
   methods: {
     registerUser() {
       this.$store.dispatch("registerUser", this.user);
+      this.$swal({
+              title: "Welcome to Moonstruck Vinyl's !",
+              text: `You have been successfully registered! Happy Shopping!`,
+              icon: "success",
+              timer: 5000
+            });
       this.$router.push("/");
     },
   },
