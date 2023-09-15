@@ -1,5 +1,5 @@
 <template>
-  <div class="d-flex align-items-center justify-content-center">
+  <div class="d-flex align-items-center justify-content-center star-bg">
     <div class="card m-5 p-5 w-50 purple-bg">
         <h1 class="text-center heading-text">Register :</h1>
 
@@ -120,6 +120,14 @@ export default {
   background: #2D1128;
   border: 1px solid #ffd700;
   color: #f4f4f4;
+}
+
+.star-bg {
+  background-image: url('https://i.postimg.cc/tC6TPGSj/other-stars.png');
+  background-repeat: no-repeat;
+  background-position: fixed;
+  background-size: cover;
+  background-attachment: fixed;
 }
 
 .heading-text {

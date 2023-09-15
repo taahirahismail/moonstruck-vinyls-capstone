@@ -1,5 +1,5 @@
 <template>
-  <div class="media">
+  <div class="media star-bg">
     <h1 class="p-4 text-center heading-text">About Us !</h1>
 
     <div class="card mx-auto mb-5 p-5 about-card">
@@ -164,6 +164,15 @@ export default {};
   opacity: 97%;
   border-radius: 20px;
 }
+
+.star-bg {
+  background-image: url('https://i.postimg.cc/tC6TPGSj/other-stars.png');
+  background-repeat: no-repeat;
+  background-position: fixed;
+  background-size: cover;
+  background-attachment: fixed;
+}
+
 
 @media screen and (max-width: 600px) {
   .media-col {

@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="star-bg">
     <h1 class="text-center p-3 heading-text">My Account</h1>
 
     <div class="card mx-auto my-3 p-5 w-75 user-card">
@@ -221,6 +221,14 @@ export default {
 </script>
 
 <style scoped>
+.star-bg {
+  background-image: url('https://i.postimg.cc/tC6TPGSj/other-stars.png');
+  background-repeat: no-repeat;
+  background-position: fixed;
+  background-size: cover;
+  background-attachment: fixed;
+}
+
 .heading-text {
   font-family: "Archivo Black", sans-serif;
 }

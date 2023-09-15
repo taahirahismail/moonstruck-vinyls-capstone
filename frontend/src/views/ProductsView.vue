@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="star-bg">
     <h1 class="p-4 text-center heading-text">Shop Our Vinyls !</h1>
 
     <div class="m-3 p-3 d-flex justify-content-between media-fix-2">
@@ -122,6 +122,14 @@ export default {
 </script>
 
 <style scoped>
+.star-bg {
+  background-image: url('https://i.postimg.cc/tC6TPGSj/other-stars.png');
+  background-repeat: no-repeat;
+  background-position: fixed;
+  background-size: cover;
+  background-attachment: fixed;
+}
+
 #prod-card {
   background: #0a192f;
   border: 3px solid #f4f4f4;

@@ -1,5 +1,5 @@
 <template>
-  <div class="row p-3">
+  <div class="row p-3 star-bg">
     <h1 class="p-4 text-center heading-text">Contact Us !</h1>
 
     <div class="my-3 d-flex justify-content-center media">
@@ -125,6 +125,15 @@ export default {
   background: #2D1128;
   color: #f4f4f4;
 }
+
+.star-bg {
+  background-image: url('https://i.postimg.cc/tC6TPGSj/other-stars.png');
+  background-repeat: no-repeat;
+  background-position: fixed;
+  background-size: cover;
+  background-attachment: fixed;
+}
+
 
 .light-border {
   border: 2px solid #f4f4f4;

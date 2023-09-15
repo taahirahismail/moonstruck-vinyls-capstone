@@ -1,5 +1,5 @@
 <template>
-  <div class="d-flex align-items-center justify-content-center">
+  <div class="d-flex align-items-center justify-content-center star-bg">
     <div class="card mx-auto my-5 p-5 w-50 align-items-center blue-bg">
       <form @submit.prevent="login">
         <h1 class="text-center heading-text">Login :</h1>
@@ -78,6 +78,15 @@ export default {
   color: #f4f4f4;
   border: 3px solid #ffd700;
 }
+
+.star-bg {
+  background-image: url('https://i.postimg.cc/tC6TPGSj/other-stars.png');
+  background-repeat: no-repeat;
+  background-position: fixed;
+  background-size: cover;
+  background-attachment: fixed;
+}
+
 
 .heading-text {
   font-family: "Archivo Black", sans-serif;
